@@ -6,6 +6,19 @@
 
     <groupId>com.fouo</groupId>
     <artifactId>fouomall</artifactId>
+    <packaging>pom</packaging>
     <version>RELEASE 1.0.0</version>
- 
+    <modules>
+        <module>fouo-product</module>
+        <module>fouo-common</module>
+        <module>fouo-coupon</module>
+        <module>fouo-ware</module>
+        <module>fouo-gateway</module>
+        <module>fouo-member</module>
+        <module>fouo-order</module>
+        <module>fouo-third-party</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+    </modules>
+
 </project>

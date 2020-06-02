@@ -1,0 +1,20 @@
+package com.fouo.product.vo;
+
+import com.fouo.product.entity.ProductAttrValue;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import io.swagger.annotations.ApiModel;
+
+/**
+ * spu属性值视图实体类
+ *
+ * @author fouo
+ * @since 2020-06-01
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value = "ProductAttrValueVO对象", description = "spu属性值")
+public class ProductAttrValueVO extends ProductAttrValue {
+	private static final long serialVersionUID = 1L;
+
+}
