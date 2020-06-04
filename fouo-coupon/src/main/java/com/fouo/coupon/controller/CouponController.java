@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class CouponController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入coupon")
 	public R<Coupon> detail(Coupon coupon) {
 		Coupon detail = couponService.getOne(Condition.getQueryWrapper(coupon));
@@ -46,7 +44,6 @@ public class CouponController {
 	 * 分页 优惠券信息
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入coupon")
 	public R<IPage<Coupon>> list(Coupon coupon, Query query) {
 		IPage<Coupon> pages = couponService.page(Condition.getPage(query), Condition.getQueryWrapper(coupon));
@@ -57,7 +54,6 @@ public class CouponController {
 	 * 自定义分页 优惠券信息
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入coupon")
 	public R<IPage<CouponVO>> page(CouponVO coupon, Query query) {
 		IPage<CouponVO> pages = couponService.selectCouponPage(Condition.getPage(query), coupon);
@@ -68,7 +64,6 @@ public class CouponController {
 	 * 新增 优惠券信息
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入coupon")
 	public R save(@Valid @RequestBody Coupon coupon) {
 		return R.status(couponService.save(coupon));
@@ -78,7 +73,6 @@ public class CouponController {
 	 * 修改 优惠券信息
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入coupon")
 	public R update(@Valid @RequestBody Coupon coupon) {
 		return R.status(couponService.updateById(coupon));
@@ -88,7 +82,6 @@ public class CouponController {
 	 * 新增或修改 优惠券信息
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入coupon")
 	public R submit(@Valid @RequestBody Coupon coupon) {
 		return R.status(couponService.saveOrUpdate(coupon));
@@ -99,7 +92,6 @@ public class CouponController {
 	 * 删除 优惠券信息
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(couponService.removeByIds(Func.toLongList(ids)));

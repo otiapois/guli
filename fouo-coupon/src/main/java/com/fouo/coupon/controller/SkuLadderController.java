@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class SkuLadderController  {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入skuLadder")
 	public R<SkuLadder> detail(SkuLadder skuLadder) {
 		SkuLadder detail = skuLadderService.getOne(Condition.getQueryWrapper(skuLadder));
@@ -46,7 +44,6 @@ public class SkuLadderController  {
 	 * 分页 商品阶梯价格
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入skuLadder")
 	public R<IPage<SkuLadder>> list(SkuLadder skuLadder, Query query) {
 		IPage<SkuLadder> pages = skuLadderService.page(Condition.getPage(query), Condition.getQueryWrapper(skuLadder));
@@ -57,7 +54,6 @@ public class SkuLadderController  {
 	 * 自定义分页 商品阶梯价格
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入skuLadder")
 	public R<IPage<SkuLadderVO>> page(SkuLadderVO skuLadder, Query query) {
 		IPage<SkuLadderVO> pages = skuLadderService.selectSkuLadderPage(Condition.getPage(query), skuLadder);
@@ -68,7 +64,6 @@ public class SkuLadderController  {
 	 * 新增 商品阶梯价格
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入skuLadder")
 	public R save(@Valid @RequestBody SkuLadder skuLadder) {
 		return R.status(skuLadderService.save(skuLadder));
@@ -78,7 +73,6 @@ public class SkuLadderController  {
 	 * 修改 商品阶梯价格
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入skuLadder")
 	public R update(@Valid @RequestBody SkuLadder skuLadder) {
 		return R.status(skuLadderService.updateById(skuLadder));
@@ -88,7 +82,6 @@ public class SkuLadderController  {
 	 * 新增或修改 商品阶梯价格
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入skuLadder")
 	public R submit(@Valid @RequestBody SkuLadder skuLadder) {
 		return R.status(skuLadderService.saveOrUpdate(skuLadder));
@@ -99,7 +92,6 @@ public class SkuLadderController  {
 	 * 删除 商品阶梯价格
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(skuLadderService.removeByIds(Func.toLongList(ids)));

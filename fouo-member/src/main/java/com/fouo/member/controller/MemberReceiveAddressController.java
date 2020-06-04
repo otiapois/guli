@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class MemberReceiveAddressController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入memberReceiveAddress")
 	public R<MemberReceiveAddress> detail(MemberReceiveAddress memberReceiveAddress) {
 		MemberReceiveAddress detail = memberReceiveAddressService.getOne(Condition.getQueryWrapper(memberReceiveAddress));
@@ -46,7 +44,6 @@ public class MemberReceiveAddressController {
 	 * 分页 会员收货地址
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入memberReceiveAddress")
 	public R<IPage<MemberReceiveAddress>> list(MemberReceiveAddress memberReceiveAddress, Query query) {
 		IPage<MemberReceiveAddress> pages = memberReceiveAddressService.page(Condition.getPage(query), Condition.getQueryWrapper(memberReceiveAddress));
@@ -57,7 +54,6 @@ public class MemberReceiveAddressController {
 	 * 自定义分页 会员收货地址
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入memberReceiveAddress")
 	public R<IPage<MemberReceiveAddressVO>> page(MemberReceiveAddressVO memberReceiveAddress, Query query) {
 		IPage<MemberReceiveAddressVO> pages = memberReceiveAddressService.selectMemberReceiveAddressPage(Condition.getPage(query), memberReceiveAddress);
@@ -68,7 +64,6 @@ public class MemberReceiveAddressController {
 	 * 新增 会员收货地址
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入memberReceiveAddress")
 	public R save(@Valid @RequestBody MemberReceiveAddress memberReceiveAddress) {
 		return R.status(memberReceiveAddressService.save(memberReceiveAddress));
@@ -78,7 +73,6 @@ public class MemberReceiveAddressController {
 	 * 修改 会员收货地址
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入memberReceiveAddress")
 	public R update(@Valid @RequestBody MemberReceiveAddress memberReceiveAddress) {
 		return R.status(memberReceiveAddressService.updateById(memberReceiveAddress));
@@ -88,7 +82,6 @@ public class MemberReceiveAddressController {
 	 * 新增或修改 会员收货地址
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入memberReceiveAddress")
 	public R submit(@Valid @RequestBody MemberReceiveAddress memberReceiveAddress) {
 		return R.status(memberReceiveAddressService.saveOrUpdate(memberReceiveAddress));
@@ -99,7 +92,6 @@ public class MemberReceiveAddressController {
 	 * 删除 会员收货地址
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(memberReceiveAddressService.removeByIds(Func.toLongList(ids)));

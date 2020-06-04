@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class SpuCommentController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入spuComment")
 	public R<SpuComment> detail(SpuComment spuComment) {
 		SpuComment detail = spuCommentService.getOne(Condition.getQueryWrapper(spuComment));
@@ -46,7 +44,6 @@ public class SpuCommentController {
 	 * 分页 商品评价
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入spuComment")
 	public R<IPage<SpuComment>> list(SpuComment spuComment, Query query) {
 		IPage<SpuComment> pages = spuCommentService.page(Condition.getPage(query), Condition.getQueryWrapper(spuComment));
@@ -57,7 +54,6 @@ public class SpuCommentController {
 	 * 自定义分页 商品评价
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入spuComment")
 	public R<IPage<SpuCommentVO>> page(SpuCommentVO spuComment, Query query) {
 		IPage<SpuCommentVO> pages = spuCommentService.selectSpuCommentPage(Condition.getPage(query), spuComment);
@@ -68,7 +64,6 @@ public class SpuCommentController {
 	 * 新增 商品评价
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入spuComment")
 	public R save(@Valid @RequestBody SpuComment spuComment) {
 		return R.status(spuCommentService.save(spuComment));
@@ -78,7 +73,6 @@ public class SpuCommentController {
 	 * 修改 商品评价
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入spuComment")
 	public R update(@Valid @RequestBody SpuComment spuComment) {
 		return R.status(spuCommentService.updateById(spuComment));
@@ -88,7 +82,6 @@ public class SpuCommentController {
 	 * 新增或修改 商品评价
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入spuComment")
 	public R submit(@Valid @RequestBody SpuComment spuComment) {
 		return R.status(spuCommentService.saveOrUpdate(spuComment));
@@ -99,7 +92,6 @@ public class SpuCommentController {
 	 * 删除 商品评价
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(spuCommentService.removeByIds(Func.toLongList(ids)));

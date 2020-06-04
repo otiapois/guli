@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class SeckillSkuRelationController  {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入seckillSkuRelation")
 	public R<SeckillSkuRelation> detail(SeckillSkuRelation seckillSkuRelation) {
 		SeckillSkuRelation detail = seckillSkuRelationService.getOne(Condition.getQueryWrapper(seckillSkuRelation));
@@ -46,7 +44,6 @@ public class SeckillSkuRelationController  {
 	 * 分页 秒杀活动商品关联
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入seckillSkuRelation")
 	public R<IPage<SeckillSkuRelation>> list(SeckillSkuRelation seckillSkuRelation, Query query) {
 		IPage<SeckillSkuRelation> pages = seckillSkuRelationService.page(Condition.getPage(query), Condition.getQueryWrapper(seckillSkuRelation));
@@ -57,7 +54,6 @@ public class SeckillSkuRelationController  {
 	 * 自定义分页 秒杀活动商品关联
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入seckillSkuRelation")
 	public R<IPage<SeckillSkuRelationVO>> page(SeckillSkuRelationVO seckillSkuRelation, Query query) {
 		IPage<SeckillSkuRelationVO> pages = seckillSkuRelationService.selectSeckillSkuRelationPage(Condition.getPage(query), seckillSkuRelation);
@@ -68,7 +64,6 @@ public class SeckillSkuRelationController  {
 	 * 新增 秒杀活动商品关联
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入seckillSkuRelation")
 	public R save(@Valid @RequestBody SeckillSkuRelation seckillSkuRelation) {
 		return R.status(seckillSkuRelationService.save(seckillSkuRelation));
@@ -78,7 +73,6 @@ public class SeckillSkuRelationController  {
 	 * 修改 秒杀活动商品关联
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入seckillSkuRelation")
 	public R update(@Valid @RequestBody SeckillSkuRelation seckillSkuRelation) {
 		return R.status(seckillSkuRelationService.updateById(seckillSkuRelation));
@@ -88,7 +82,6 @@ public class SeckillSkuRelationController  {
 	 * 新增或修改 秒杀活动商品关联
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入seckillSkuRelation")
 	public R submit(@Valid @RequestBody SeckillSkuRelation seckillSkuRelation) {
 		return R.status(seckillSkuRelationService.saveOrUpdate(seckillSkuRelation));
@@ -99,7 +92,6 @@ public class SeckillSkuRelationController  {
 	 * 删除 秒杀活动商品关联
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(seckillSkuRelationService.removeByIds(Func.toLongList(ids)));

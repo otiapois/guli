@@ -5,7 +5,7 @@
     <parent>
         <artifactId>fouomall</artifactId>
         <groupId>com.fouo</groupId>
-        <version>RELEASE 1.0.0</version>
+        <version>1.0.0 RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -20,12 +20,12 @@
         <dependency>
             <groupId>com.fouo</groupId>
             <artifactId>fouo-common</artifactId>
-            <version>RELEASE 1.0.0</version>
+            <version>1.0.0 RELEASE</version>
             <exclusions>
-            <exclusion>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-            </exclusion>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>

@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class AttrGroupController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入attrGroup")
 	public R<AttrGroup> detail(AttrGroup attrGroup) {
 		AttrGroup detail = attrGroupService.getOne(Condition.getQueryWrapper(attrGroup));
@@ -46,7 +44,6 @@ public class AttrGroupController {
 	 * 分页 属性分组
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入attrGroup")
 	public R<IPage<AttrGroup>> list(AttrGroup attrGroup, Query query) {
 		IPage<AttrGroup> pages = attrGroupService.page(Condition.getPage(query), Condition.getQueryWrapper(attrGroup));
@@ -57,7 +54,6 @@ public class AttrGroupController {
 	 * 自定义分页 属性分组
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入attrGroup")
 	public R<IPage<AttrGroupVO>> page(AttrGroupVO attrGroup, Query query) {
 		IPage<AttrGroupVO> pages = attrGroupService.selectAttrGroupPage(Condition.getPage(query), attrGroup);
@@ -68,7 +64,6 @@ public class AttrGroupController {
 	 * 新增 属性分组
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入attrGroup")
 	public R save(@Valid @RequestBody AttrGroup attrGroup) {
 		return R.status(attrGroupService.save(attrGroup));
@@ -78,7 +73,6 @@ public class AttrGroupController {
 	 * 修改 属性分组
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入attrGroup")
 	public R update(@Valid @RequestBody AttrGroup attrGroup) {
 		return R.status(attrGroupService.updateById(attrGroup));
@@ -88,7 +82,6 @@ public class AttrGroupController {
 	 * 新增或修改 属性分组
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入attrGroup")
 	public R submit(@Valid @RequestBody AttrGroup attrGroup) {
 		return R.status(attrGroupService.saveOrUpdate(attrGroup));
@@ -99,7 +92,6 @@ public class AttrGroupController {
 	 * 删除 属性分组
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(attrGroupService.removeByIds(Func.toLongList(ids)));

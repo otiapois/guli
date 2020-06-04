@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$" includeSubdirectories="false" />
+    </excludeFromCompile>
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -21,6 +25,15 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="fouo-common" options="-parameters -parameters" />
+      <module name="fouo-coupon" options="-parameters -parameters" />
+      <module name="fouo-gateway" options="-parameters -parameters" />
+      <module name="fouo-member" options="-parameters -parameters" />
+      <module name="fouo-order" options="-parameters -parameters" />
+      <module name="fouo-product" options="-parameters -parameters" />
+      <module name="fouo-third-party" options="-parameters -parameters" />
+      <module name="fouo-ware" options="-parameters -parameters" />
+      <module name="fouomall" options="" />
       <module name="renren-fast" options="-parameters" />
       <module name="renren-generator" options="-parameters" />
     </option>

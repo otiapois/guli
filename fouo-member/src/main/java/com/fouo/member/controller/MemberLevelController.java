@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class MemberLevelController{
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入memberLevel")
 	public R<MemberLevel> detail(MemberLevel memberLevel) {
 		MemberLevel detail = memberLevelService.getOne(Condition.getQueryWrapper(memberLevel));
@@ -46,7 +44,6 @@ public class MemberLevelController{
 	 * 分页 会员等级
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入memberLevel")
 	public R<IPage<MemberLevel>> list(MemberLevel memberLevel, Query query) {
 		IPage<MemberLevel> pages = memberLevelService.page(Condition.getPage(query), Condition.getQueryWrapper(memberLevel));
@@ -57,7 +54,6 @@ public class MemberLevelController{
 	 * 自定义分页 会员等级
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入memberLevel")
 	public R<IPage<MemberLevelVO>> page(MemberLevelVO memberLevel, Query query) {
 		IPage<MemberLevelVO> pages = memberLevelService.selectMemberLevelPage(Condition.getPage(query), memberLevel);
@@ -68,7 +64,6 @@ public class MemberLevelController{
 	 * 新增 会员等级
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入memberLevel")
 	public R save(@Valid @RequestBody MemberLevel memberLevel) {
 		return R.status(memberLevelService.save(memberLevel));
@@ -78,7 +73,6 @@ public class MemberLevelController{
 	 * 修改 会员等级
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入memberLevel")
 	public R update(@Valid @RequestBody MemberLevel memberLevel) {
 		return R.status(memberLevelService.updateById(memberLevel));
@@ -88,7 +82,6 @@ public class MemberLevelController{
 	 * 新增或修改 会员等级
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入memberLevel")
 	public R submit(@Valid @RequestBody MemberLevel memberLevel) {
 		return R.status(memberLevelService.saveOrUpdate(memberLevel));
@@ -99,7 +92,6 @@ public class MemberLevelController{
 	 * 删除 会员等级
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(memberLevelService.removeByIds(Func.toLongList(ids)));

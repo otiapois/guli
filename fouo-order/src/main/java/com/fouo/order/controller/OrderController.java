@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class OrderController  {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入order")
 	public R<Order> detail(Order order) {
 		Order detail = orderService.getOne(Condition.getQueryWrapper(order));
@@ -46,7 +44,6 @@ public class OrderController  {
 	 * 分页 订单
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入order")
 	public R<IPage<Order>> list(Order order, Query query) {
 		IPage<Order> pages = orderService.page(Condition.getPage(query), Condition.getQueryWrapper(order));
@@ -57,7 +54,6 @@ public class OrderController  {
 	 * 自定义分页 订单
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入order")
 	public R<IPage<OrderVO>> page(OrderVO order, Query query) {
 		IPage<OrderVO> pages = orderService.selectOrderPage(Condition.getPage(query), order);
@@ -68,7 +64,6 @@ public class OrderController  {
 	 * 新增 订单
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入order")
 	public R save(@Valid @RequestBody Order order) {
 		return R.status(orderService.save(order));
@@ -78,7 +73,6 @@ public class OrderController  {
 	 * 修改 订单
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入order")
 	public R update(@Valid @RequestBody Order order) {
 		return R.status(orderService.updateById(order));
@@ -88,7 +82,6 @@ public class OrderController  {
 	 * 新增或修改 订单
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入order")
 	public R submit(@Valid @RequestBody Order order) {
 		return R.status(orderService.saveOrUpdate(order));
@@ -99,7 +92,6 @@ public class OrderController  {
 	 * 删除 订单
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(orderService.removeByIds(Func.toLongList(ids)));

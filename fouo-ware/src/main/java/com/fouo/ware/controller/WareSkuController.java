@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class WareSkuController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入wareSku")
 	public R<WareSku> detail(WareSku wareSku) {
 		WareSku detail = wareSkuService.getOne(Condition.getQueryWrapper(wareSku));
@@ -46,7 +44,6 @@ public class WareSkuController {
 	 * 分页 商品库存
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入wareSku")
 	public R<IPage<WareSku>> list(WareSku wareSku, Query query) {
 		IPage<WareSku> pages = wareSkuService.page(Condition.getPage(query), Condition.getQueryWrapper(wareSku));
@@ -57,7 +54,6 @@ public class WareSkuController {
 	 * 自定义分页 商品库存
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入wareSku")
 	public R<IPage<WareSkuVO>> page(WareSkuVO wareSku, Query query) {
 		IPage<WareSkuVO> pages = wareSkuService.selectWareSkuPage(Condition.getPage(query), wareSku);
@@ -68,7 +64,6 @@ public class WareSkuController {
 	 * 新增 商品库存
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入wareSku")
 	public R save(@Valid @RequestBody WareSku wareSku) {
 		return R.status(wareSkuService.save(wareSku));
@@ -78,7 +73,6 @@ public class WareSkuController {
 	 * 修改 商品库存
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入wareSku")
 	public R update(@Valid @RequestBody WareSku wareSku) {
 		return R.status(wareSkuService.updateById(wareSku));
@@ -88,7 +82,6 @@ public class WareSkuController {
 	 * 新增或修改 商品库存
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入wareSku")
 	public R submit(@Valid @RequestBody WareSku wareSku) {
 		return R.status(wareSkuService.saveOrUpdate(wareSku));
@@ -99,7 +92,6 @@ public class WareSkuController {
 	 * 删除 商品库存
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(wareSkuService.removeByIds(Func.toLongList(ids)));

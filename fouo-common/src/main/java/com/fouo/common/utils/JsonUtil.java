@@ -67,21 +67,7 @@ public class JsonUtil {
         return null;
     }
 
-    /**
-     * 将json反序列化成对象
-     *
-     * @param content       content
-     * @param typeReference 泛型类型
-     * @param <T>           T 泛型标记
-     * @return Bean
-     */
-    public static <T> T parse(String content, TypeReference<?> typeReference) {
-        try {
-            return getInstance().readValue(content, typeReference);
-        } catch (IOException e) {
-            throw Exceptions.unchecked(e);
-        }
-    }
+
 
     /**
      * 将json byte 数组反序列化成对象
@@ -100,81 +86,11 @@ public class JsonUtil {
     }
 
 
-    /**
-     * 将json反序列化成对象
-     *
-     * @param bytes         bytes
-     * @param typeReference 泛型类型
-     * @param <T>           T 泛型标记
-     * @return Bean
-     */
-    public static <T> T parse(byte[] bytes, TypeReference<?> typeReference) {
-        try {
-            return getInstance().readValue(bytes, typeReference);
-        } catch (IOException e) {
-            throw Exceptions.unchecked(e);
-        }
-    }
 
-    /**
-     * 将json反序列化成对象
-     *
-     * @param in        InputStream
-     * @param valueType class
-     * @param <T>       T 泛型标记
-     * @return Bean
-     */
-    public static <T> T parse(InputStream in, Class<T> valueType) {
-        try {
-            return getInstance().readValue(in, valueType);
-        } catch (IOException e) {
-            throw Exceptions.unchecked(e);
-        }
-    }
 
-    /**
-     * 将json反序列化成对象
-     *
-     * @param in            InputStream
-     * @param typeReference 泛型类型
-     * @param <T>           T 泛型标记
-     * @return Bean
-     */
-    public static <T> T parse(InputStream in, TypeReference<?> typeReference) {
-        try {
-            return getInstance().readValue(in, typeReference);
-        } catch (IOException e) {
-            throw Exceptions.unchecked(e);
-        }
-    }
 
-    /**
-     * 将json反序列化成List对象
-     *
-     * @param content      content
-     * @param valueTypeRef class
-     * @param <T>          T 泛型标记
-     * @return List对象
-     */
-    public static <T> List<T> parseArray(String content, Class<T> valueTypeRef) {
-        try {
 
-            if (!StringUtil.startsWithIgnoreCase(content, StringPool.LEFT_SQ_BRACKET)) {
-                content = StringPool.LEFT_SQ_BRACKET + content + StringPool.RIGHT_SQ_BRACKET;
-            }
 
-            List<Map<String, Object>> list = getInstance().readValue(content, new TypeReference<List<T>>() {
-            });
-            List<T> result = new ArrayList<>();
-            for (Map<String, Object> map : list) {
-                result.add(toPojo(map, valueTypeRef));
-            }
-            return result;
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
-    }
 
     public static Map<String, Object> toMap(String content) {
         try {
@@ -186,20 +102,7 @@ public class JsonUtil {
         return null;
     }
 
-    public static <T> Map<String, T> toMap(String content, Class<T> valueTypeRef) {
-        try {
-            Map<String, Map<String, Object>> map = getInstance().readValue(content, new TypeReference<Map<String, T>>() {
-            });
-            Map<String, T> result = new HashMap<>(16);
-            for (Map.Entry<String, Map<String, Object>> entry : map.entrySet()) {
-                result.put(entry.getKey(), toPojo(entry.getValue(), valueTypeRef));
-            }
-            return result;
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
-    }
+
 
     public static <T> T toPojo(Map fromValue, Class<T> toValueType) {
         return getInstance().convertValue(fromValue, toValueType);

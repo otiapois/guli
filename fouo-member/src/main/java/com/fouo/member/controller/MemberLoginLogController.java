@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class MemberLoginLogController{
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入memberLoginLog")
 	public R<MemberLoginLog> detail(MemberLoginLog memberLoginLog) {
 		MemberLoginLog detail = memberLoginLogService.getOne(Condition.getQueryWrapper(memberLoginLog));
@@ -46,7 +44,6 @@ public class MemberLoginLogController{
 	 * 分页 会员登录记录
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入memberLoginLog")
 	public R<IPage<MemberLoginLog>> list(MemberLoginLog memberLoginLog, Query query) {
 		IPage<MemberLoginLog> pages = memberLoginLogService.page(Condition.getPage(query), Condition.getQueryWrapper(memberLoginLog));
@@ -57,7 +54,6 @@ public class MemberLoginLogController{
 	 * 自定义分页 会员登录记录
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入memberLoginLog")
 	public R<IPage<MemberLoginLogVO>> page(MemberLoginLogVO memberLoginLog, Query query) {
 		IPage<MemberLoginLogVO> pages = memberLoginLogService.selectMemberLoginLogPage(Condition.getPage(query), memberLoginLog);
@@ -68,7 +64,6 @@ public class MemberLoginLogController{
 	 * 新增 会员登录记录
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入memberLoginLog")
 	public R save(@Valid @RequestBody MemberLoginLog memberLoginLog) {
 		return R.status(memberLoginLogService.save(memberLoginLog));
@@ -78,7 +73,6 @@ public class MemberLoginLogController{
 	 * 修改 会员登录记录
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入memberLoginLog")
 	public R update(@Valid @RequestBody MemberLoginLog memberLoginLog) {
 		return R.status(memberLoginLogService.updateById(memberLoginLog));
@@ -88,7 +82,6 @@ public class MemberLoginLogController{
 	 * 新增或修改 会员登录记录
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入memberLoginLog")
 	public R submit(@Valid @RequestBody MemberLoginLog memberLoginLog) {
 		return R.status(memberLoginLogService.saveOrUpdate(memberLoginLog));
@@ -99,7 +92,6 @@ public class MemberLoginLogController{
 	 * 删除 会员登录记录
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(memberLoginLogService.removeByIds(Func.toLongList(ids)));

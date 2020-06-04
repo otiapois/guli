@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class RefundInfoController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入refundInfo")
 	public R<RefundInfo> detail(RefundInfo refundInfo) {
 		RefundInfo detail = refundInfoService.getOne(Condition.getQueryWrapper(refundInfo));
@@ -46,7 +44,6 @@ public class RefundInfoController {
 	 * 分页 退款信息
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入refundInfo")
 	public R<IPage<RefundInfo>> list(RefundInfo refundInfo, Query query) {
 		IPage<RefundInfo> pages = refundInfoService.page(Condition.getPage(query), Condition.getQueryWrapper(refundInfo));
@@ -57,7 +54,6 @@ public class RefundInfoController {
 	 * 自定义分页 退款信息
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入refundInfo")
 	public R<IPage<RefundInfoVO>> page(RefundInfoVO refundInfo, Query query) {
 		IPage<RefundInfoVO> pages = refundInfoService.selectRefundInfoPage(Condition.getPage(query), refundInfo);
@@ -68,7 +64,6 @@ public class RefundInfoController {
 	 * 新增 退款信息
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入refundInfo")
 	public R save(@Valid @RequestBody RefundInfo refundInfo) {
 		return R.status(refundInfoService.save(refundInfo));
@@ -78,7 +73,6 @@ public class RefundInfoController {
 	 * 修改 退款信息
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入refundInfo")
 	public R update(@Valid @RequestBody RefundInfo refundInfo) {
 		return R.status(refundInfoService.updateById(refundInfo));
@@ -88,7 +82,6 @@ public class RefundInfoController {
 	 * 新增或修改 退款信息
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入refundInfo")
 	public R submit(@Valid @RequestBody RefundInfo refundInfo) {
 		return R.status(refundInfoService.saveOrUpdate(refundInfo));
@@ -99,7 +92,6 @@ public class RefundInfoController {
 	 * 删除 退款信息
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(refundInfoService.removeByIds(Func.toLongList(ids)));

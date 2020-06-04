@@ -8,7 +8,6 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.PatternMatchUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -275,18 +274,7 @@ public class FileUtil extends org.springframework.util.FileCopyUtils {
 		}
 	}
 
-	/**
-	 * 转成file
-	 * @param multipartFile MultipartFile
-	 * @param file File
-	 */
-	public static void toFile(MultipartFile multipartFile, final File file) {
-		try {
-			FileUtil.toFile(multipartFile.getInputStream(), file);
-		} catch (IOException e) {
-			throw Exceptions.unchecked(e);
-		}
-	}
+
 
 	/**
 	 * 转成file

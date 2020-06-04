@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class AttrController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入attr")
 	public R<Attr> detail(Attr attr) {
 		Attr detail = attrService.getOne(Condition.getQueryWrapper(attr));
@@ -46,7 +44,6 @@ public class AttrController {
 	 * 分页 商品属性
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入attr")
 	public R<IPage<Attr>> list(Attr attr, Query query) {
 		IPage<Attr> pages = attrService.page(Condition.getPage(query), Condition.getQueryWrapper(attr));
@@ -57,7 +54,6 @@ public class AttrController {
 	 * 自定义分页 商品属性
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入attr")
 	public R<IPage<AttrVO>> page(AttrVO attr, Query query) {
 		IPage<AttrVO> pages = attrService.selectAttrPage(Condition.getPage(query), attr);
@@ -68,7 +64,6 @@ public class AttrController {
 	 * 新增 商品属性
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入attr")
 	public R save(@Valid @RequestBody Attr attr) {
 		return R.status(attrService.save(attr));
@@ -78,7 +73,6 @@ public class AttrController {
 	 * 修改 商品属性
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入attr")
 	public R update(@Valid @RequestBody Attr attr) {
 		return R.status(attrService.updateById(attr));
@@ -88,7 +82,6 @@ public class AttrController {
 	 * 新增或修改 商品属性
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入attr")
 	public R submit(@Valid @RequestBody Attr attr) {
 		return R.status(attrService.saveOrUpdate(attr));
@@ -99,7 +92,6 @@ public class AttrController {
 	 * 删除 商品属性
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(attrService.removeByIds(Func.toLongList(ids)));

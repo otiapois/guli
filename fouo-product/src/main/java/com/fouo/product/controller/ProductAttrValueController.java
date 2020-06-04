@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class ProductAttrValueController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入productAttrValue")
 	public R<ProductAttrValue> detail(ProductAttrValue productAttrValue) {
 		ProductAttrValue detail = productAttrValueService.getOne(Condition.getQueryWrapper(productAttrValue));
@@ -46,7 +44,6 @@ public class ProductAttrValueController {
 	 * 分页 spu属性值
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入productAttrValue")
 	public R<IPage<ProductAttrValue>> list(ProductAttrValue productAttrValue, Query query) {
 		IPage<ProductAttrValue> pages = productAttrValueService.page(Condition.getPage(query), Condition.getQueryWrapper(productAttrValue));
@@ -57,7 +54,6 @@ public class ProductAttrValueController {
 	 * 自定义分页 spu属性值
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入productAttrValue")
 	public R<IPage<ProductAttrValueVO>> page(ProductAttrValueVO productAttrValue, Query query) {
 		IPage<ProductAttrValueVO> pages = productAttrValueService.selectProductAttrValuePage(Condition.getPage(query), productAttrValue);
@@ -68,7 +64,6 @@ public class ProductAttrValueController {
 	 * 新增 spu属性值
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入productAttrValue")
 	public R save(@Valid @RequestBody ProductAttrValue productAttrValue) {
 		return R.status(productAttrValueService.save(productAttrValue));
@@ -78,7 +73,6 @@ public class ProductAttrValueController {
 	 * 修改 spu属性值
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入productAttrValue")
 	public R update(@Valid @RequestBody ProductAttrValue productAttrValue) {
 		return R.status(productAttrValueService.updateById(productAttrValue));
@@ -88,7 +82,6 @@ public class ProductAttrValueController {
 	 * 新增或修改 spu属性值
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入productAttrValue")
 	public R submit(@Valid @RequestBody ProductAttrValue productAttrValue) {
 		return R.status(productAttrValueService.saveOrUpdate(productAttrValue));
@@ -99,7 +92,6 @@ public class ProductAttrValueController {
 	 * 删除 spu属性值
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(productAttrValueService.removeByIds(Func.toLongList(ids)));

@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class WareInfoController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入wareInfo")
 	public R<WareInfo> detail(WareInfo wareInfo) {
 		WareInfo detail = wareInfoService.getOne(Condition.getQueryWrapper(wareInfo));
@@ -46,7 +44,6 @@ public class WareInfoController {
 	 * 分页 仓库信息
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入wareInfo")
 	public R<IPage<WareInfo>> list(WareInfo wareInfo, Query query) {
 		IPage<WareInfo> pages = wareInfoService.page(Condition.getPage(query), Condition.getQueryWrapper(wareInfo));
@@ -57,7 +54,6 @@ public class WareInfoController {
 	 * 自定义分页 仓库信息
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入wareInfo")
 	public R<IPage<WareInfoVO>> page(WareInfoVO wareInfo, Query query) {
 		IPage<WareInfoVO> pages = wareInfoService.selectWareInfoPage(Condition.getPage(query), wareInfo);
@@ -68,7 +64,6 @@ public class WareInfoController {
 	 * 新增 仓库信息
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入wareInfo")
 	public R save(@Valid @RequestBody WareInfo wareInfo) {
 		return R.status(wareInfoService.save(wareInfo));
@@ -78,7 +73,6 @@ public class WareInfoController {
 	 * 修改 仓库信息
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入wareInfo")
 	public R update(@Valid @RequestBody WareInfo wareInfo) {
 		return R.status(wareInfoService.updateById(wareInfo));
@@ -88,7 +82,6 @@ public class WareInfoController {
 	 * 新增或修改 仓库信息
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入wareInfo")
 	public R submit(@Valid @RequestBody WareInfo wareInfo) {
 		return R.status(wareInfoService.saveOrUpdate(wareInfo));
@@ -99,7 +92,6 @@ public class WareInfoController {
 	 * 删除 仓库信息
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(wareInfoService.removeByIds(Func.toLongList(ids)));

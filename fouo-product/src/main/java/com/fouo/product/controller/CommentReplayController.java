@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class CommentReplayController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入commentReplay")
 	public R<CommentReplay> detail(CommentReplay commentReplay) {
 		CommentReplay detail = commentReplayService.getOne(Condition.getQueryWrapper(commentReplay));
@@ -46,7 +44,6 @@ public class CommentReplayController {
 	 * 分页 商品评价回复关系
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入commentReplay")
 	public R<IPage<CommentReplay>> list(CommentReplay commentReplay, Query query) {
 		IPage<CommentReplay> pages = commentReplayService.page(Condition.getPage(query), Condition.getQueryWrapper(commentReplay));
@@ -57,7 +54,6 @@ public class CommentReplayController {
 	 * 自定义分页 商品评价回复关系
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入commentReplay")
 	public R<IPage<CommentReplayVO>> page(CommentReplayVO commentReplay, Query query) {
 		IPage<CommentReplayVO> pages = commentReplayService.selectCommentReplayPage(Condition.getPage(query), commentReplay);
@@ -68,7 +64,6 @@ public class CommentReplayController {
 	 * 新增 商品评价回复关系
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入commentReplay")
 	public R save(@Valid @RequestBody CommentReplay commentReplay) {
 		return R.status(commentReplayService.save(commentReplay));
@@ -78,7 +73,6 @@ public class CommentReplayController {
 	 * 修改 商品评价回复关系
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入commentReplay")
 	public R update(@Valid @RequestBody CommentReplay commentReplay) {
 		return R.status(commentReplayService.updateById(commentReplay));
@@ -88,7 +82,6 @@ public class CommentReplayController {
 	 * 新增或修改 商品评价回复关系
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入commentReplay")
 	public R submit(@Valid @RequestBody CommentReplay commentReplay) {
 		return R.status(commentReplayService.saveOrUpdate(commentReplay));
@@ -99,7 +92,6 @@ public class CommentReplayController {
 	 * 删除 商品评价回复关系
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(commentReplayService.removeByIds(Func.toLongList(ids)));

@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class OrderSettingController{
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入orderSetting")
 	public R<OrderSetting> detail(OrderSetting orderSetting) {
 		OrderSetting detail = orderSettingService.getOne(Condition.getQueryWrapper(orderSetting));
@@ -46,7 +44,6 @@ public class OrderSettingController{
 	 * 分页 订单配置信息
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入orderSetting")
 	public R<IPage<OrderSetting>> list(OrderSetting orderSetting, Query query) {
 		IPage<OrderSetting> pages = orderSettingService.page(Condition.getPage(query), Condition.getQueryWrapper(orderSetting));
@@ -57,7 +54,6 @@ public class OrderSettingController{
 	 * 自定义分页 订单配置信息
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入orderSetting")
 	public R<IPage<OrderSettingVO>> page(OrderSettingVO orderSetting, Query query) {
 		IPage<OrderSettingVO> pages = orderSettingService.selectOrderSettingPage(Condition.getPage(query), orderSetting);
@@ -68,7 +64,6 @@ public class OrderSettingController{
 	 * 新增 订单配置信息
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入orderSetting")
 	public R save(@Valid @RequestBody OrderSetting orderSetting) {
 		return R.status(orderSettingService.save(orderSetting));
@@ -78,7 +73,6 @@ public class OrderSettingController{
 	 * 修改 订单配置信息
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入orderSetting")
 	public R update(@Valid @RequestBody OrderSetting orderSetting) {
 		return R.status(orderSettingService.updateById(orderSetting));
@@ -88,7 +82,6 @@ public class OrderSettingController{
 	 * 新增或修改 订单配置信息
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入orderSetting")
 	public R submit(@Valid @RequestBody OrderSetting orderSetting) {
 		return R.status(orderSettingService.saveOrUpdate(orderSetting));
@@ -99,7 +92,6 @@ public class OrderSettingController{
 	 * 删除 订单配置信息
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(orderSettingService.removeByIds(Func.toLongList(ids)));

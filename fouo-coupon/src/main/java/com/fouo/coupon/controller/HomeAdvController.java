@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class HomeAdvController  {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入homeAdv")
 	public R<HomeAdv> detail(HomeAdv homeAdv) {
 		HomeAdv detail = homeAdvService.getOne(Condition.getQueryWrapper(homeAdv));
@@ -46,7 +44,6 @@ public class HomeAdvController  {
 	 * 分页 首页轮播广告
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入homeAdv")
 	public R<IPage<HomeAdv>> list(HomeAdv homeAdv, Query query) {
 		IPage<HomeAdv> pages = homeAdvService.page(Condition.getPage(query), Condition.getQueryWrapper(homeAdv));
@@ -57,7 +54,6 @@ public class HomeAdvController  {
 	 * 自定义分页 首页轮播广告
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入homeAdv")
 	public R<IPage<HomeAdvVO>> page(HomeAdvVO homeAdv, Query query) {
 		IPage<HomeAdvVO> pages = homeAdvService.selectHomeAdvPage(Condition.getPage(query), homeAdv);
@@ -68,7 +64,6 @@ public class HomeAdvController  {
 	 * 新增 首页轮播广告
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入homeAdv")
 	public R save(@Valid @RequestBody HomeAdv homeAdv) {
 		return R.status(homeAdvService.save(homeAdv));
@@ -78,7 +73,6 @@ public class HomeAdvController  {
 	 * 修改 首页轮播广告
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入homeAdv")
 	public R update(@Valid @RequestBody HomeAdv homeAdv) {
 		return R.status(homeAdvService.updateById(homeAdv));
@@ -88,7 +82,6 @@ public class HomeAdvController  {
 	 * 新增或修改 首页轮播广告
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入homeAdv")
 	public R submit(@Valid @RequestBody HomeAdv homeAdv) {
 		return R.status(homeAdvService.saveOrUpdate(homeAdv));
@@ -99,7 +92,6 @@ public class HomeAdvController  {
 	 * 删除 首页轮播广告
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(homeAdvService.removeByIds(Func.toLongList(ids)));

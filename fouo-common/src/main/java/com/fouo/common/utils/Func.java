@@ -1,8 +1,6 @@
 
 package com.fouo.common.utils;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -14,7 +12,6 @@ import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.lang.Nullable;
 import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.method.HandlerMethod;
 
 import java.io.Closeable;
 import java.io.File;
@@ -900,16 +897,6 @@ public class Func {
 	}
 
 	/**
-	 * 转义HTML用于安全过滤
-	 *
-	 * @param html html
-	 * @return {String}
-	 */
-	public static String escapeHtml(String html) {
-		return StringUtil.escapeHtml(html);
-	}
-
-	/**
 	 * 随机数生成
 	 *
 	 * @param count 字符长度
@@ -1210,75 +1197,6 @@ public class Func {
 	 */
 	public static <T> T readJson(String jsonString, Class<T> valueType) {
 		return JsonUtil.parse(jsonString, valueType);
-	}
-
-	/**
-	 * 将json反序列化成对象
-	 *
-	 * @param in        InputStream
-	 * @param valueType class
-	 * @param <T>       T 泛型标记
-	 * @return Bean
-	 */
-	public static <T> T readJson(InputStream in, Class<T> valueType) {
-		return JsonUtil.parse(in, valueType);
-	}
-
-	/**
-	 * 将json反序列化成对象
-	 *
-	 * @param bytes         bytes
-	 * @param typeReference 泛型类型
-	 * @param <T>           T 泛型标记
-	 * @return Bean
-	 */
-	public static <T> T readJson(byte[] bytes, TypeReference<?> typeReference) {
-		return JsonUtil.parse(bytes, typeReference);
-	}
-
-	/**
-	 * 将json反序列化成对象
-	 *
-	 * @param jsonString    jsonString
-	 * @param typeReference 泛型类型
-	 * @param <T>           T 泛型标记
-	 * @return Bean
-	 */
-	public static <T> T readJson(String jsonString, TypeReference<?> typeReference) {
-		return JsonUtil.parse(jsonString, typeReference);
-	}
-
-	/**
-	 * 将json反序列化成对象
-	 *
-	 * @param in            InputStream
-	 * @param typeReference 泛型类型
-	 * @param <T>           T 泛型标记
-	 * @return Bean
-	 */
-	public static <T> T readJson(InputStream in, TypeReference<?> typeReference) {
-		return JsonUtil.parse(in, typeReference);
-	}
-
-	/**
-	 * url 编码
-	 *
-	 * @param source the String to be encoded
-	 * @return the encoded String
-	 */
-	public static String urlEncode(String source) {
-		return UrlUtil.encode(source, Charsets.UTF_8);
-	}
-
-	/**
-	 * url 编码
-	 *
-	 * @param source  the String to be encoded
-	 * @param charset the character encoding to encode to
-	 * @return the encoded String
-	 */
-	public static String urlEncode(String source, Charset charset) {
-		return UrlUtil.encode(source, charset);
 	}
 
 	/**

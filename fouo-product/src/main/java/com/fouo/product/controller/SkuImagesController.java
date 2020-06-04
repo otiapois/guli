@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class SkuImagesController{
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入skuImages")
 	public R<SkuImages> detail(SkuImages skuImages) {
 		SkuImages detail = skuImagesService.getOne(Condition.getQueryWrapper(skuImages));
@@ -46,7 +44,6 @@ public class SkuImagesController{
 	 * 分页 sku图片
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入skuImages")
 	public R<IPage<SkuImages>> list(SkuImages skuImages, Query query) {
 		IPage<SkuImages> pages = skuImagesService.page(Condition.getPage(query), Condition.getQueryWrapper(skuImages));
@@ -57,7 +54,6 @@ public class SkuImagesController{
 	 * 自定义分页 sku图片
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入skuImages")
 	public R<IPage<SkuImagesVO>> page(SkuImagesVO skuImages, Query query) {
 		IPage<SkuImagesVO> pages = skuImagesService.selectSkuImagesPage(Condition.getPage(query), skuImages);
@@ -68,7 +64,6 @@ public class SkuImagesController{
 	 * 新增 sku图片
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入skuImages")
 	public R save(@Valid @RequestBody SkuImages skuImages) {
 		return R.status(skuImagesService.save(skuImages));
@@ -78,7 +73,6 @@ public class SkuImagesController{
 	 * 修改 sku图片
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入skuImages")
 	public R update(@Valid @RequestBody SkuImages skuImages) {
 		return R.status(skuImagesService.updateById(skuImages));
@@ -88,7 +82,6 @@ public class SkuImagesController{
 	 * 新增或修改 sku图片
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入skuImages")
 	public R submit(@Valid @RequestBody SkuImages skuImages) {
 		return R.status(skuImagesService.saveOrUpdate(skuImages));
@@ -99,7 +92,6 @@ public class SkuImagesController{
 	 * 删除 sku图片
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(skuImagesService.removeByIds(Func.toLongList(ids)));

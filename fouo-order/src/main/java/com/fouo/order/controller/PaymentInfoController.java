@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class PaymentInfoController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入paymentInfo")
 	public R<PaymentInfo> detail(PaymentInfo paymentInfo) {
 		PaymentInfo detail = paymentInfoService.getOne(Condition.getQueryWrapper(paymentInfo));
@@ -46,7 +44,6 @@ public class PaymentInfoController {
 	 * 分页 支付信息表
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入paymentInfo")
 	public R<IPage<PaymentInfo>> list(PaymentInfo paymentInfo, Query query) {
 		IPage<PaymentInfo> pages = paymentInfoService.page(Condition.getPage(query), Condition.getQueryWrapper(paymentInfo));
@@ -57,7 +54,6 @@ public class PaymentInfoController {
 	 * 自定义分页 支付信息表
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入paymentInfo")
 	public R<IPage<PaymentInfoVO>> page(PaymentInfoVO paymentInfo, Query query) {
 		IPage<PaymentInfoVO> pages = paymentInfoService.selectPaymentInfoPage(Condition.getPage(query), paymentInfo);
@@ -68,7 +64,6 @@ public class PaymentInfoController {
 	 * 新增 支付信息表
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入paymentInfo")
 	public R save(@Valid @RequestBody PaymentInfo paymentInfo) {
 		return R.status(paymentInfoService.save(paymentInfo));
@@ -78,7 +73,6 @@ public class PaymentInfoController {
 	 * 修改 支付信息表
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入paymentInfo")
 	public R update(@Valid @RequestBody PaymentInfo paymentInfo) {
 		return R.status(paymentInfoService.updateById(paymentInfo));
@@ -88,7 +82,6 @@ public class PaymentInfoController {
 	 * 新增或修改 支付信息表
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入paymentInfo")
 	public R submit(@Valid @RequestBody PaymentInfo paymentInfo) {
 		return R.status(paymentInfoService.saveOrUpdate(paymentInfo));
@@ -99,7 +92,6 @@ public class PaymentInfoController {
 	 * 删除 支付信息表
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(paymentInfoService.removeByIds(Func.toLongList(ids)));

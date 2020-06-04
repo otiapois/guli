@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class MemberCollectSpuController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入memberCollectSpu")
 	public R<MemberCollectSpu> detail(MemberCollectSpu memberCollectSpu) {
 		MemberCollectSpu detail = memberCollectSpuService.getOne(Condition.getQueryWrapper(memberCollectSpu));
@@ -46,7 +44,6 @@ public class MemberCollectSpuController {
 	 * 分页 会员收藏的商品
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入memberCollectSpu")
 	public R<IPage<MemberCollectSpu>> list(MemberCollectSpu memberCollectSpu, Query query) {
 		IPage<MemberCollectSpu> pages = memberCollectSpuService.page(Condition.getPage(query), Condition.getQueryWrapper(memberCollectSpu));
@@ -57,7 +54,6 @@ public class MemberCollectSpuController {
 	 * 自定义分页 会员收藏的商品
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入memberCollectSpu")
 	public R<IPage<MemberCollectSpuVO>> page(MemberCollectSpuVO memberCollectSpu, Query query) {
 		IPage<MemberCollectSpuVO> pages = memberCollectSpuService.selectMemberCollectSpuPage(Condition.getPage(query), memberCollectSpu);
@@ -68,7 +64,6 @@ public class MemberCollectSpuController {
 	 * 新增 会员收藏的商品
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入memberCollectSpu")
 	public R save(@Valid @RequestBody MemberCollectSpu memberCollectSpu) {
 		return R.status(memberCollectSpuService.save(memberCollectSpu));
@@ -78,7 +73,6 @@ public class MemberCollectSpuController {
 	 * 修改 会员收藏的商品
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入memberCollectSpu")
 	public R update(@Valid @RequestBody MemberCollectSpu memberCollectSpu) {
 		return R.status(memberCollectSpuService.updateById(memberCollectSpu));
@@ -88,7 +82,6 @@ public class MemberCollectSpuController {
 	 * 新增或修改 会员收藏的商品
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入memberCollectSpu")
 	public R submit(@Valid @RequestBody MemberCollectSpu memberCollectSpu) {
 		return R.status(memberCollectSpuService.saveOrUpdate(memberCollectSpu));
@@ -99,7 +92,6 @@ public class MemberCollectSpuController {
 	 * 删除 会员收藏的商品
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(memberCollectSpuService.removeByIds(Func.toLongList(ids)));

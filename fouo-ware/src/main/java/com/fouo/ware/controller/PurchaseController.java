@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class PurchaseController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入purchase")
 	public R<Purchase> detail(Purchase purchase) {
 		Purchase detail = purchaseService.getOne(Condition.getQueryWrapper(purchase));
@@ -46,7 +44,6 @@ public class PurchaseController {
 	 * 分页 采购信息
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入purchase")
 	public R<IPage<Purchase>> list(Purchase purchase, Query query) {
 		IPage<Purchase> pages = purchaseService.page(Condition.getPage(query), Condition.getQueryWrapper(purchase));
@@ -57,7 +54,6 @@ public class PurchaseController {
 	 * 自定义分页 采购信息
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入purchase")
 	public R<IPage<PurchaseVO>> page(PurchaseVO purchase, Query query) {
 		IPage<PurchaseVO> pages = purchaseService.selectPurchasePage(Condition.getPage(query), purchase);
@@ -68,7 +64,6 @@ public class PurchaseController {
 	 * 新增 采购信息
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入purchase")
 	public R save(@Valid @RequestBody Purchase purchase) {
 		return R.status(purchaseService.save(purchase));
@@ -78,7 +73,6 @@ public class PurchaseController {
 	 * 修改 采购信息
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入purchase")
 	public R update(@Valid @RequestBody Purchase purchase) {
 		return R.status(purchaseService.updateById(purchase));
@@ -88,7 +82,6 @@ public class PurchaseController {
 	 * 新增或修改 采购信息
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入purchase")
 	public R submit(@Valid @RequestBody Purchase purchase) {
 		return R.status(purchaseService.saveOrUpdate(purchase));
@@ -99,7 +92,6 @@ public class PurchaseController {
 	 * 删除 采购信息
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(purchaseService.removeByIds(Func.toLongList(ids)));

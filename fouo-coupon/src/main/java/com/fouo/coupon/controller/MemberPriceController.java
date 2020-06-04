@@ -5,7 +5,6 @@ import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class MemberPriceController {
 	 * 详情
 	 */
 	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入memberPrice")
 	public R<MemberPrice> detail(MemberPrice memberPrice) {
 		MemberPrice detail = memberPriceService.getOne(Condition.getQueryWrapper(memberPrice));
@@ -46,7 +44,6 @@ public class MemberPriceController {
 	 * 分页 商品会员价格
 	 */
 	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入memberPrice")
 	public R<IPage<MemberPrice>> list(MemberPrice memberPrice, Query query) {
 		IPage<MemberPrice> pages = memberPriceService.page(Condition.getPage(query), Condition.getQueryWrapper(memberPrice));
@@ -57,7 +54,6 @@ public class MemberPriceController {
 	 * 自定义分页 商品会员价格
 	 */
 	@GetMapping("/page")
-	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "分页", notes = "传入memberPrice")
 	public R<IPage<MemberPriceVO>> page(MemberPriceVO memberPrice, Query query) {
 		IPage<MemberPriceVO> pages = memberPriceService.selectMemberPricePage(Condition.getPage(query), memberPrice);
@@ -68,7 +64,6 @@ public class MemberPriceController {
 	 * 新增 商品会员价格
 	 */
 	@PostMapping("/save")
-	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入memberPrice")
 	public R save(@Valid @RequestBody MemberPrice memberPrice) {
 		return R.status(memberPriceService.save(memberPrice));
@@ -78,7 +73,6 @@ public class MemberPriceController {
 	 * 修改 商品会员价格
 	 */
 	@PostMapping("/update")
-	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入memberPrice")
 	public R update(@Valid @RequestBody MemberPrice memberPrice) {
 		return R.status(memberPriceService.updateById(memberPrice));
@@ -88,7 +82,6 @@ public class MemberPriceController {
 	 * 新增或修改 商品会员价格
 	 */
 	@PostMapping("/submit")
-	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入memberPrice")
 	public R submit(@Valid @RequestBody MemberPrice memberPrice) {
 		return R.status(memberPriceService.saveOrUpdate(memberPrice));
@@ -99,7 +92,6 @@ public class MemberPriceController {
 	 * 删除 商品会员价格
 	 */
 	@PostMapping("/remove")
-	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(memberPriceService.removeByIds(Func.toLongList(ids)));
