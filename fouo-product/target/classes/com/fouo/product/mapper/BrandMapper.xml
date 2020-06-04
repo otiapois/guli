@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fouo.product.mapper.BrandMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="brandResultMap" type="com.fouo.product.entity.Brand">
+        <id column="brand_id" property="brandId"/>
+        <result column="name" property="name"/>
+        <result column="logo" property="logo"/>
+        <result column="descript" property="descript"/>
+        <result column="show_status" property="showStatus"/>
+        <result column="first_letter" property="firstLetter"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+
+    <select id="selectBrandPage" resultMap="brandResultMap">
+        select * from pms_brand where is_deleted = 0
+    </select>
+
+</mapper>
