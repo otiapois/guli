@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fouo.ware.mapper.WareSkuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="wareSkuResultMap" type="com.fouo.ware.entity.WareSku">
+        <id column="id" property="id"/>
+        <result column="sku_id" property="skuId"/>
+        <result column="ware_id" property="wareId"/>
+        <result column="stock" property="stock"/>
+        <result column="sku_name" property="skuName"/>
+        <result column="stock_locked" property="stockLocked"/>
+    </resultMap>
+
+
+    <select id="selectWareSkuPage" resultMap="wareSkuResultMap">
+        select * from wms_ware_sku where is_deleted = 0
+    </select>
+
+</mapper>
