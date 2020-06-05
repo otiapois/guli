@@ -4,11 +4,17 @@ import com.fouo.common.support.Condition;
 import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
 import com.fouo.common.utils.Func;
+import com.fouo.coupon.entity.Coupon;
+import com.fouo.member.feign.ICouponClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
+
+import javax.annotation.Resource;
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fouo.member.entity.Member;
@@ -29,6 +35,8 @@ public class MemberController {
 
 	private IMemberService memberService;
 
+//	@Resource
+//	private ICouponClient iCouponClient;
 	/**
 	 * 详情
 	 */
@@ -96,5 +104,13 @@ public class MemberController {
 		return R.status(memberService.removeByIds(Func.toLongList(ids)));
 	}
 
-	
+	/**
+	 * 测试
+
+	@GetMapping("/test")
+	@ApiOperation(value = "测试", notes = "传入member")
+	public R<Coupon> detail2(Member member) {
+		R<Coupon> couponR = iCouponClient.testFeign();
+		return couponR;
+	} */
 }

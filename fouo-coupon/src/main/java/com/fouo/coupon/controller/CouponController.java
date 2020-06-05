@@ -97,5 +97,15 @@ public class CouponController {
 		return R.status(couponService.removeByIds(Func.toLongList(ids)));
 	}
 
+
+	/**
+	 * 测试feign
+	@GetMapping("/feign")
+	@ApiOperation(value = "详情", notes = "传入member")
+	public R<Coupon> testFeign() {
+		Coupon coupon = new Coupon();
+		coupon.setCouponName("测试用的优惠券名称");
+		return R.data(coupon);
+	} */
 	
 }
