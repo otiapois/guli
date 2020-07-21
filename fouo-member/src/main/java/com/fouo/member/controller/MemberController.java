@@ -29,7 +29,7 @@ import com.fouo.member.service.IMemberService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/member")
+@RequestMapping("/member/member")
 @Api(value = "会员", tags = "会员接口")
 public class MemberController {
 

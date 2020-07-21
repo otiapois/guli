@@ -24,7 +24,7 @@ import javax.validation.Valid;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/integrationchangehistory")
+@RequestMapping("/member/integrationchangehistory")
 @Api(value = "积分变化历史记录", tags = "积分变化历史记录接口")
 public class IntegrationChangeHistoryController {
 

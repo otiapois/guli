@@ -22,4 +22,10 @@ public interface IBrandService extends IService<Brand> {
 	 */
 	IPage<BrandVO> selectBrandPage(IPage<BrandVO> page, BrandVO brand);
 
+	/**
+	 * 更新品牌
+	 * @param brand
+	 * @return
+	 */
+    boolean updateDetail(Brand brand);
 }

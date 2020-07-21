@@ -24,7 +24,7 @@ import com.fouo.member.service.IMemberReceiveAddressService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/memberreceiveaddress")
+@RequestMapping("/member/memberreceiveaddress")
 @Api(value = "会员收货地址", tags = "会员收货地址接口")
 public class MemberReceiveAddressController {
 

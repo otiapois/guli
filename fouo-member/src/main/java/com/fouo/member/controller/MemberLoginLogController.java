@@ -24,7 +24,7 @@ import com.fouo.member.service.IMemberLoginLogService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/memberloginlog")
+@RequestMapping("/member/memberloginlog")
 @Api(value = "会员登录记录", tags = "会员登录记录接口")
 public class MemberLoginLogController{
 

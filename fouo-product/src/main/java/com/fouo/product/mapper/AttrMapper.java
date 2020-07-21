@@ -21,6 +21,21 @@ public interface AttrMapper extends BaseMapper<Attr> {
 	 * @param attr
 	 * @return
 	 */
-	List<AttrVO> selectAttrPage(IPage page, AttrVO attr);
+	List<Attr> selectAttrPage(IPage page, AttrVO attr);
 
+	/**
+	 * 分页查询基本属性列表
+	 * @param page
+	 * @param attrVO
+	 * @return
+	 */
+    List<Attr> selectBaseAttrPage(IPage page, AttrVO attrVO);
+
+	/**
+	 * 分页查询销售属性列表
+	 * @param page
+	 * @param attrVO
+	 * @return
+	 */
+	List<Attr> selectSaleAttrPage(IPage<AttrVO> page, AttrVO attrVO);
 }

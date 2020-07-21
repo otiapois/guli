@@ -24,7 +24,7 @@ import com.fouo.product.service.ISkuSaleAttrValueService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/skusaleattrvalue")
+@RequestMapping("/product/skusaleattrvalue")
 @Api(value = "sku销售属性&值", tags = "sku销售属性&值接口")
 public class SkuSaleAttrValueController {
 

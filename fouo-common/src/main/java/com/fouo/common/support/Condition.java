@@ -25,7 +25,7 @@ public class Condition {
         return page;
     }
 
-    /**
+     /**
      * 获取mybatis plus中的QueryWrapper
      *
      * @param entity

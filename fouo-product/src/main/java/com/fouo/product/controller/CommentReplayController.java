@@ -24,7 +24,7 @@ import com.fouo.product.service.ICommentReplayService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/commentreplay")
+@RequestMapping("/product/commentreplay")
 @Api(value = "商品评价回复关系", tags = "商品评价回复关系接口")
 public class CommentReplayController {
 

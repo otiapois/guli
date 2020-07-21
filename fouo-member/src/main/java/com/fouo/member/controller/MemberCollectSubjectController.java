@@ -24,7 +24,7 @@ import com.fouo.member.service.IMemberCollectSubjectService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/membercollectsubject")
+@RequestMapping("/member/membercollectsubject")
 @Api(value = "会员收藏的专题活动", tags = "会员收藏的专题活动接口")
 public class MemberCollectSubjectController  {
 

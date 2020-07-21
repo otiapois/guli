@@ -23,4 +23,10 @@ public interface CategoryMapper extends BaseMapper<Category> {
 	 */
 	List<CategoryVO> selectCategoryPage(IPage page, CategoryVO category);
 
+	/**
+	 * 根据id获取分类名称
+	 * @param catelogId 分类id
+	 * @return
+	 */
+    String getCatelogNameById(Long catelogId);
 }

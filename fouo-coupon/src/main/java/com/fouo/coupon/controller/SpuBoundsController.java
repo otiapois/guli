@@ -24,7 +24,7 @@ import com.fouo.coupon.service.ISpuBoundsService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/spubounds")
+@RequestMapping("/coupon/spubounds")
 @Api(value = "商品spu积分设置", tags = "商品spu积分设置接口")
 public class SpuBoundsController {
 
@@ -65,7 +65,7 @@ public class SpuBoundsController {
 	 */
 	@PostMapping("/save")
 	@ApiOperation(value = "新增", notes = "传入spuBounds")
-	public R save(@Valid @RequestBody SpuBounds spuBounds) {
+	public R saveSpuBounds(@Valid @RequestBody SpuBounds spuBounds) {
 		return R.status(spuBoundsService.save(spuBounds));
 	}
 

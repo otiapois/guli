@@ -15,4 +15,23 @@
         select * from pms_attr_attrgroup_relation where is_deleted = 0
     </select>
 
+    <select id="getGroupIdByAttrId" resultType="java.lang.Long">
+        select attr_group_id from pms_attr_attrgroup_relation where attr_id = #{attrId} and is_deleted = 0
+    </select>
+
+    <select id="getAttrIdsByGroupId" resultType="java.lang.Long">
+        select attr_id from pms_attr_attrgroup_relation where attr_group_id = #{attrGroupId}  and is_deleted = 0
+    </select>
+
+    <delete id="removeRelation">
+        delete from  pms_attr_attrgroup_relation   where attr_id = #{attrId} and attr_group_id =#{attrGroupId}
+    </delete>
+
+    <delete id="removeRelationBatch">
+        delete from  pms_attr_attrgroup_relation   where
+        <foreach collection="list" item="item" separator="OR">
+            (attr_id = #{item.attrId} and attr_group_id =#{item.attrGroupId})
+        </foreach>
+    </delete>
+
 </mapper>

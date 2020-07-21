@@ -24,7 +24,7 @@ import com.fouo.product.service.ISpuInfoService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/spuinfo")
+@RequestMapping("/product/spuinfo")
 @Api(value = "spu信息", tags = "spu信息接口")
 public class SpuInfoController {
 
@@ -65,8 +65,8 @@ public class SpuInfoController {
 	 */
 	@PostMapping("/save")
 	@ApiOperation(value = "新增", notes = "传入spuInfo")
-	public R save(@Valid @RequestBody SpuInfo spuInfo) {
-		return R.status(spuInfoService.save(spuInfo));
+	public R save(@Valid @RequestBody SpuInfoVO spuInfoVO) {
+		return R.status(spuInfoService.saveSpuInfo(spuInfoVO));
 	}
 
 	/**

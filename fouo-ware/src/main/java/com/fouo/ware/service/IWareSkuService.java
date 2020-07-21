@@ -22,4 +22,11 @@ public interface IWareSkuService extends IService<WareSku> {
 	 */
 	IPage<WareSkuVO> selectWareSkuPage(IPage<WareSkuVO> page, WareSkuVO wareSku);
 
+	/**
+	 * 添加库存
+	 * @param skuId
+	 * @param wareId
+	 * @param skuNum
+	 */
+    void addStock(Long skuId, Long wareId, Integer skuNum);
 }

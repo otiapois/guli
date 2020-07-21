@@ -23,4 +23,11 @@ public interface WareSkuMapper extends BaseMapper<WareSku> {
 	 */
 	List<WareSkuVO> selectWareSkuPage(IPage page, WareSkuVO wareSku);
 
+	/**
+	 * 添加库存
+	 * @param skuId
+	 * @param wareId
+	 * @param skuNum
+	 */
+    void addStock(Long skuId, Long wareId, Integer skuNum);
 }

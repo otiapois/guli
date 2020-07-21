@@ -1,5 +1,6 @@
 package com.fouo.coupon.service;
 
+import com.fouo.common.to.SkuReductionTO;
 import com.fouo.coupon.entity.SkuFullReduction;
 import com.fouo.coupon.vo.SkuFullReductionVO;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -22,4 +23,10 @@ public interface ISkuFullReductionService extends IService<SkuFullReduction> {
 	 */
 	IPage<SkuFullReductionVO> selectSkuFullReductionPage(IPage<SkuFullReductionVO> page, SkuFullReductionVO skuFullReduction);
 
+	/**
+	 * 保存折扣数据
+	 * @param skuReductionTO
+	 * @return
+	 */
+    boolean saveSkuReduction(SkuReductionTO skuReductionTO);
 }

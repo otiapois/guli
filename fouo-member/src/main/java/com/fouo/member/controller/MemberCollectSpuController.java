@@ -24,7 +24,7 @@ import com.fouo.member.service.IMemberCollectSpuService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/membercollectspu")
+@RequestMapping("/member/membercollectspu")
 @Api(value = "会员收藏的商品", tags = "会员收藏的商品接口")
 public class MemberCollectSpuController {
 

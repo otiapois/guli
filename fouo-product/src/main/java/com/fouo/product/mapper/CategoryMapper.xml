@@ -20,4 +20,7 @@
         select * from pms_category where is_deleted = 0
     </select>
 
+    <select id="getCatelogNameById" resultType="java.lang.String">
+        SELECT name FROM pms_category where cat_id = #{catelogId}
+    </select>
 </mapper>

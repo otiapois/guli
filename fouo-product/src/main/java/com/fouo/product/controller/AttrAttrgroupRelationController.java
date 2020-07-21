@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 
 /**
  * 属性&属性分组关联 控制器
@@ -24,7 +25,7 @@ import javax.validation.Valid;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/attrattrgrouprelation")
+@RequestMapping("/product/attrattrgrouprelation")
 @Api(value = "属性&属性分组关联", tags = "属性&属性分组关联接口")
 public class AttrAttrgroupRelationController  {
 
@@ -87,15 +88,14 @@ public class AttrAttrgroupRelationController  {
 		return R.status(attrAttrgroupRelationService.saveOrUpdate(attrAttrgroupRelation));
 	}
 
-	
+
 	/**
 	 * 删除 属性&属性分组关联
 	 */
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除", notes = "传入ids")
-	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
-		return R.status(attrAttrgroupRelationService.removeByIds(Func.toLongList(ids)));
+	public R remove(@ApiParam(value = "主键集合", required = true) @RequestBody Long[] ids) {
+		return R.status(attrAttrgroupRelationService.removeByIds(Arrays.asList(ids)));
 	}
 
-	
 }

@@ -24,7 +24,7 @@ import com.fouo.ware.service.IWareSkuService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/waresku")
+@RequestMapping("/ware/waresku")
 @Api(value = "商品库存", tags = "商品库存接口")
 public class WareSkuController {
 

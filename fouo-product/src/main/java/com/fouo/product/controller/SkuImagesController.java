@@ -24,7 +24,7 @@ import com.fouo.product.service.ISkuImagesService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/skuimages")
+@RequestMapping("/product/skuimages")
 @Api(value = "sku图片", tags = "sku图片接口")
 public class SkuImagesController{
 

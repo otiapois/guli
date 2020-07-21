@@ -8,7 +8,7 @@
         <result column="spu_id" property="spuId"/>
         <result column="sku_name" property="skuName"/>
         <result column="sku_desc" property="skuDesc"/>
-        <result column="catalog_id" property="catalogId"/>
+        <result column="catelog_id" property="catelogId"/>
         <result column="brand_id" property="brandId"/>
         <result column="sku_default_img" property="skuDefaultImg"/>
         <result column="sku_title" property="skuTitle"/>
@@ -19,7 +19,27 @@
 
 
     <select id="selectSkuInfoPage" resultMap="skuInfoResultMap">
-        select * from pms_sku_info where is_deleted = 0
+        select * from pms_sku_info where  is_deleted = 0
+
+        <if test="skuInfo.searchKeyword != null and  skuInfo.searchKeyword != ''">
+            and (sku_name like concat('%', #{skuInfo.searchKeyword}, '%')
+            or sku_desc like concat('%', #{skuInfo.searchKeyword}, '%')
+            or sku_title like concat('%', #{skuInfo.searchKeyword}, '%'))
+        </if>
+
+        <if test="skuInfo.catelogId != null">
+            and catelog_id = #{skuInfo.catelogId}
+        </if>
+        <if test="skuInfo.brandId != null">
+            and brand_id = #{skuInfo.brandId}
+        </if>
+
+        <if test="skuInfo.min != null">
+            and price >= #{skuInfo.min}
+        </if>
+        <if test="skuInfo.max != null and skuInfo.max > 0 ">
+            and #{skuInfo.max} >= price
+        </if>
     </select>
 
 </mapper>

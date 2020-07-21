@@ -20,4 +20,26 @@
         select * from pms_attr where is_deleted = 0
     </select>
 
+
+    <select id="selectBaseAttrPage" resultMap="attrResultMap">
+        select * from pms_attr where is_deleted = 0 and attr_type = 1
+        <if test="attrVO.searchKeyword != null and  attrVO.searchKeyword != ''">
+        and (attr_id like concat('%', #{attrVO.searchKeyword}, '%')
+        or attr_name like concat('%', #{attrVO.searchKeyword}, '%'))
+    </if>
+        <if test="attrVO.catelogId != null">
+            and catelog_id = #{attrVO.catelogId}
+        </if>
+    </select>
+
+    <select id="selectSaleAttrPage" resultMap="attrResultMap">
+        select * from pms_attr where is_deleted = 0 and attr_type = 0
+        <if test="attrVO.searchKeyword != null and  attrVO.searchKeyword != ''">
+            and (attr_id like concat('%', #{attrVO.searchKeyword}, '%')
+            or attr_name like concat('%', #{attrVO.searchKeyword}, '%'))
+        </if>
+        <if test="attrVO.catelogId != null">
+            and catelog_id = #{attrVO.catelogId}
+        </if>
+    </select>
 </mapper>

@@ -15,7 +15,20 @@
 
 
     <select id="selectPurchaseDetailPage" resultMap="purchaseDetailResultMap">
+
         select * from wms_purchase_detail where is_deleted = 0
+        <if test="purchaseDetail.wareId != null">
+            and ware_id = #{purchaseDetail.wareId}
+        </if>
+        <if test="purchaseDetail.status != null">
+            and status = #{purchaseDetail.status}
+        </if>
+        <if test="purchaseDetail.searchKeyword != null and  purchaseDetail.searchKeyword != ''">
+            and (name sku_id concat('%', #{purchaseDetail.searchKeyword}, '%')
+            or purchase_id like concat('%', #{purchaseDetail.searchKeyword}, '%')
+            or ware_id like concat('%', #{purchaseDetail.searchKeyword}, '%')
+            )
+        </if>
     </select>
 
 </mapper>

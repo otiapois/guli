@@ -24,7 +24,7 @@ import com.fouo.product.service.ISpuImagesService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/spuimages")
+@RequestMapping("/product/spuimages")
 @Api(value = "spu图片", tags = "spu图片接口")
 public class SpuImagesController  {
 

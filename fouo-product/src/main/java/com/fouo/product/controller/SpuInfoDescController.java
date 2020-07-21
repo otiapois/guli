@@ -24,7 +24,7 @@ import com.fouo.product.service.ISpuInfoDescService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/spuinfodesc")
+@RequestMapping("/product/spuinfodesc")
 @Api(value = "spu信息介绍", tags = "spu信息介绍接口")
 public class SpuInfoDescController {
 

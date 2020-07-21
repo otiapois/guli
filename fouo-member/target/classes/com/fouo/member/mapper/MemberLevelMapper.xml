@@ -19,6 +19,9 @@
 
     <select id="selectMemberLevelPage" resultMap="memberLevelResultMap">
         select * from ums_member_level where is_deleted = 0
+        <if test="memberLevel.searchKeyword != null and  memberLevel.searchKeyword != ''">
+            and (name like concat('%', #{memberLevel.searchKeyword}, '%')
+        </if>
     </select>
 
 </mapper>

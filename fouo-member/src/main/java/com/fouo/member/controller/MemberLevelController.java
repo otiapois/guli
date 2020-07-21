@@ -24,7 +24,7 @@ import com.fouo.member.service.IMemberLevelService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/memberlevel")
+@RequestMapping("/member/memberlevel")
 @Api(value = "会员等级", tags = "会员等级接口")
 public class MemberLevelController{
 
@@ -35,8 +35,8 @@ public class MemberLevelController{
 	 */
 	@GetMapping("/detail")
 	@ApiOperation(value = "详情", notes = "传入memberLevel")
-	public R<MemberLevel> detail(MemberLevel memberLevel) {
-		MemberLevel detail = memberLevelService.getOne(Condition.getQueryWrapper(memberLevel));
+	public R<MemberLevel> detail(MemberLevelVO memberLevelVO) {
+		MemberLevel detail = memberLevelService.getOne(Condition.getQueryWrapper(memberLevelVO));
 		return R.data(detail);
 	}
 
@@ -45,8 +45,8 @@ public class MemberLevelController{
 	 */
 	@GetMapping("/list")
 	@ApiOperation(value = "分页", notes = "传入memberLevel")
-	public R<IPage<MemberLevel>> list(MemberLevel memberLevel, Query query) {
-		IPage<MemberLevel> pages = memberLevelService.page(Condition.getPage(query), Condition.getQueryWrapper(memberLevel));
+	public R<IPage<MemberLevel>> list(MemberLevelVO memberLevelVO, Query query) {
+		IPage<MemberLevel> pages = memberLevelService.page(Condition.getPage(query), Condition.getQueryWrapper(memberLevelVO));
 		return R.data(pages);
 	}
 

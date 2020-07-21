@@ -24,7 +24,7 @@ import javax.validation.Valid;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/skuinfo")
+@RequestMapping("/product/skuinfo")
 @Api(value = "sku信息", tags = "sku信息接口")
 public class SkuInfoController{
 

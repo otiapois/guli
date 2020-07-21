@@ -23,4 +23,10 @@ public interface AttrGroupMapper extends BaseMapper<AttrGroup> {
 	 */
 	List<AttrGroupVO> selectAttrGroupPage(IPage page, AttrGroupVO attrGroup);
 
+	/**
+	 * 根据分组id获取分组名称
+	 * @param groupId 分组id
+	 * @return
+	 */
+    String getGroupNameById(Long groupId);
 }

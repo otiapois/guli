@@ -24,7 +24,7 @@ import com.fouo.ware.service.IPurchaseDetailService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/purchasedetail")
+@RequestMapping("/ware/purchasedetail")
 @Api(value = "", tags = "接口")
 public class PurchaseDetailController  {
 

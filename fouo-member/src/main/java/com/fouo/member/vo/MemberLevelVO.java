@@ -1,6 +1,7 @@
 package com.fouo.member.vo;
 
 import com.fouo.member.entity.MemberLevel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import io.swagger.annotations.ApiModel;
@@ -17,4 +18,9 @@ import io.swagger.annotations.ApiModel;
 public class MemberLevelVO extends MemberLevel {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 关键字
+	 */
+	@ApiModelProperty(value = "关键字")
+	private String searchKeyword;
 }

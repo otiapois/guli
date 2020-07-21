@@ -5,6 +5,8 @@ import com.fouo.ware.vo.PurchaseDetailVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
+import java.util.List;
+
 /**
  *  服务类
  *
@@ -22,4 +24,10 @@ public interface IPurchaseDetailService extends IService<PurchaseDetail> {
 	 */
 	IPage<PurchaseDetailVO> selectPurchaseDetailPage(IPage<PurchaseDetailVO> page, PurchaseDetailVO purchaseDetail);
 
+	/**
+	 * 根据采购单id获取采购项集合
+	 * @param id
+	 * @return
+	 */
+    List<PurchaseDetail> listDetailByPurchaseId(Long id);
 }

@@ -24,7 +24,7 @@ import com.fouo.member.service.IGrowthChangeHistoryService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/growthchangehistory")
+@RequestMapping("/member/growthchangehistory")
 @Api(value = "成长值变化历史记录", tags = "成长值变化历史记录接口")
 public class GrowthChangeHistoryController {
 

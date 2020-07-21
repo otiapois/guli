@@ -24,7 +24,7 @@ import com.fouo.product.service.ISpuCommentService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/spucomment")
+@RequestMapping("/product/spucomment")
 @Api(value = "商品评价", tags = "商品评价接口")
 public class SpuCommentController {
 

@@ -16,6 +16,8 @@ import com.fouo.ware.entity.WareInfo;
 import com.fouo.ware.vo.WareInfoVO;
 import com.fouo.ware.service.IWareInfoService;
 
+import java.util.Arrays;
+
 /**
  * 仓库信息 控制器
  *
@@ -24,7 +26,7 @@ import com.fouo.ware.service.IWareInfoService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/wareinfo")
+@RequestMapping("/ware/wareinfo")
 @Api(value = "仓库信息", tags = "仓库信息接口")
 public class WareInfoController {
 
@@ -93,9 +95,7 @@ public class WareInfoController {
 	 */
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除", notes = "传入ids")
-	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
-		return R.status(wareInfoService.removeByIds(Func.toLongList(ids)));
+	public R remove(@ApiParam(value = "主键集合", required = true) @RequestBody Long[] ids) {
+		return R.status(wareInfoService.removeByIds(Arrays.asList(ids)));
 	}
-
-	
 }

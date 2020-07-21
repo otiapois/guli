@@ -1,6 +1,7 @@
 package com.fouo.product.vo;
 
 import com.fouo.product.entity.Brand;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import io.swagger.annotations.ApiModel;
@@ -16,5 +17,9 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(value = "BrandVO对象", description = "品牌")
 public class BrandVO extends Brand {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 关键字
+	 */
+	@ApiModelProperty(value = "关键字")
+	private String searchKeyword;
 }

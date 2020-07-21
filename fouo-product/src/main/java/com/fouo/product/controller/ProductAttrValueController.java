@@ -24,7 +24,7 @@ import com.fouo.product.service.IProductAttrValueService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/productattrvalue")
+@RequestMapping("/product/productattrvalue")
 @Api(value = "spu属性值", tags = "spu属性值接口")
 public class ProductAttrValueController {
 

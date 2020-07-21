@@ -24,7 +24,7 @@ import com.fouo.member.service.IMemberStatisticsInfoService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/memberstatisticsinfo")
+@RequestMapping("/member/memberstatisticsinfo")
 @Api(value = "会员统计信息", tags = "会员统计信息接口")
 public class MemberStatisticsInfoController {
 

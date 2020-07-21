@@ -15,6 +15,17 @@
 
     <select id="selectAttrGroupPage" resultMap="attrGroupResultMap">
         select * from pms_attr_group where is_deleted = 0
+        <if test="attrGroup.searchKeyword != null and  attrGroup.searchKeyword != ''">
+            and (attr_group_name like concat('%', #{attrGroup.searchKeyword}, '%')
+            or descript like concat('%', #{attrGroup.searchKeyword}, '%')
+            or attr_group_id = #{attrGroup.searchKeyword})
+        </if>
+        <if test="attrGroup.catelogId != null">
+            and catelog_id = #{attrGroup.catelogId}
+        </if>
     </select>
 
+    <select id="getGroupNameById" resultType="java.lang.String">
+            SELECT attr_group_name FROM pms_attr_group WHERE attr_group_id = #{groupId}
+    </select>
 </mapper>

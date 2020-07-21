@@ -24,7 +24,7 @@ import com.fouo.ware.service.IWareOrderTaskService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/wareordertask")
+@RequestMapping("/ware/wareordertask")
 @Api(value = "库存工作单", tags = "库存工作单接口")
 public class WareOrderTaskController{
 

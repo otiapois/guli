@@ -7,7 +7,7 @@
         <id column="id" property="id"/>
         <result column="spu_name" property="spuName"/>
         <result column="spu_description" property="spuDescription"/>
-        <result column="catalog_id" property="catalogId"/>
+        <result column="catelog_id" property="catelogId"/>
         <result column="brand_id" property="brandId"/>
         <result column="weight" property="weight"/>
         <result column="publish_status" property="publishStatus"/>
@@ -18,6 +18,20 @@
 
     <select id="selectSpuInfoPage" resultMap="spuInfoResultMap">
         select * from pms_spu_info where is_deleted = 0
+        <if test="spuInfo.searchKeyword != null and  spuInfo.searchKeyword != ''">
+            and (spu_name like concat('%', #{spuInfo.searchKeyword}, '%')
+            or spu_description like concat('%', #{spuInfo.searchKeyword}, '%'))
+        </if>
+        <if test="spuInfo.catelogId != null">
+            and catelog_id = #{spuInfo.catelogId}
+        </if>
+        <if test="spuInfo.brandId != null">
+            and brand_id = #{spuInfo.brandId}
+        </if>
+        <if test="spuInfo.publishStatus != null">
+            and publish_status = #{spuInfo.publishStatus}
+        </if>
+
     </select>
 
 </mapper>

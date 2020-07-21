@@ -23,4 +23,12 @@ public interface PurchaseMapper extends BaseMapper<Purchase> {
 	 */
 	List<PurchaseVO> selectPurchasePage(IPage page, PurchaseVO purchase);
 
+	/**
+	 * 未领取的采购单分页
+	 *
+	 * @param page
+	 * @param purchase
+	 * @return
+	 */
+	List<PurchaseVO> selectUnreceivePurchasePage(IPage page, PurchaseVO purchase);
 }

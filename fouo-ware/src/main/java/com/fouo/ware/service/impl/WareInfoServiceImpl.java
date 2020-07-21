@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
+import java.util.List;
+
 /**
  * 仓库信息 服务实现类
  *
@@ -19,7 +21,10 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoMapper, WareInfo> i
 
 	@Override
 	public IPage<WareInfoVO> selectWareInfoPage(IPage<WareInfoVO> page, WareInfoVO wareInfo) {
-		return page.setRecords(baseMapper.selectWareInfoPage(page, wareInfo));
+
+		List<WareInfoVO> list = baseMapper.selectWareInfoPage(page, wareInfo);
+		page.setTotal(list.size());
+		return page.setRecords(list);
 	}
 
 }

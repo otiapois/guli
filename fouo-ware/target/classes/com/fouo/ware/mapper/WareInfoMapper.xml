@@ -13,6 +13,19 @@
 
     <select id="selectWareInfoPage" resultMap="wareInfoResultMap">
         select * from wms_ware_info where is_deleted = 0
+
+        <if test="wareInfo.id != null">
+            and id = #{wareInfo.id}
+        </if>
+
+        <if test="wareInfo.searchKeyword != null and  wareInfo.searchKeyword != ''">
+            and (name like concat('%', #{wareInfo.searchKeyword}, '%')
+            or address like concat('%', #{wareInfo.searchKeyword}, '%')
+            or areacode like concat('%', #{wareInfo.searchKeyword}, '%')
+            or id = #{wareInfo.searchKeyword}
+            )
+        </if>
+
     </select>
 
 </mapper>

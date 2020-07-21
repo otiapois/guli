@@ -3,6 +3,7 @@ package com.fouo.coupon.controller;
 import com.fouo.common.support.Condition;
 import com.fouo.common.support.Query;
 import com.fouo.common.support.R;
+import com.fouo.common.to.SkuReductionTO;
 import com.fouo.common.utils.Func;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +25,7 @@ import com.fouo.coupon.service.ISkuFullReductionService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/skufullreduction")
+@RequestMapping("/coupon/skufullreduction")
 @Api(value = "商品满减信息", tags = "商品满减信息接口")
 public class SkuFullReductionController  {
 
@@ -69,6 +70,13 @@ public class SkuFullReductionController  {
 		return R.status(skuFullReductionService.save(skuFullReduction));
 	}
 
+	/**
+	 * 新增 商品满减信息
+	 */
+	@PostMapping("/saveinfo")
+	public R saveInfo(@RequestBody SkuReductionTO skuReductionTO){
+		return R.status(skuFullReductionService.saveSkuReduction(skuReductionTO));
+	}
 	/**
 	 * 修改 商品满减信息
 	 */

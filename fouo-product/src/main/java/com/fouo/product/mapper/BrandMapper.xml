@@ -16,6 +16,11 @@
 
     <select id="selectBrandPage" resultMap="brandResultMap">
         select * from pms_brand where is_deleted = 0
+        <if test="brand.searchKeyword != null and  brand.searchKeyword != ''">
+            and (name like concat('%', #{brand.searchKeyword}, '%')
+            or descript like concat('%', #{brand.searchKeyword}, '%'))
+            or brand_id = #{brand.searchKeyword}
+        </if>
     </select>
 
 </mapper>
