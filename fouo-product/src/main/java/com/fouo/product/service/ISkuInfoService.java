@@ -5,6 +5,8 @@ import com.fouo.product.vo.SkuInfoVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
+import java.util.List;
+
 /**
  * sku信息 服务类
  *
@@ -22,4 +24,10 @@ public interface ISkuInfoService extends IService<SkuInfo> {
 	 */
 	IPage<SkuInfoVO> selectSkuInfoPage(IPage<SkuInfoVO> page, SkuInfoVO skuInfo);
 
+	/**
+	 * 根据spuId查询对应sku数据集合
+	 * @param spuId
+	 * @return
+	 */
+    List<SkuInfo> getSkusBySpuId(Long spuId);
 }

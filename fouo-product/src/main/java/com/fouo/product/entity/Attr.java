@@ -7,10 +7,12 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.NoArgsConstructor;
 
 /**
  * 商品属性实体类
@@ -19,6 +21,8 @@ import io.swagger.annotations.ApiModelProperty;
  * @since 2020-06-01
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @TableName("pms_attr")
 @ApiModel(value = "Attr对象", description = "商品属性")
 public class Attr implements Serializable {

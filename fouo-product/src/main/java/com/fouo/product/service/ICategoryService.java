@@ -2,11 +2,13 @@ package com.fouo.product.service;
 
 import com.fouo.common.support.Query;
 import com.fouo.product.entity.Category;
+import com.fouo.product.vo.Catalog2VO;
 import com.fouo.product.vo.CategoryVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品三级分类 服务类
@@ -54,4 +56,16 @@ public interface ICategoryService extends IService<Category> {
 	 * @return
 	 */
 	boolean updateDetail(Category category);
+
+	/**
+	 * 返回所有一级分类
+	 * @return
+	 */
+	List<Category> getTopCategory();
+
+	/**
+	 * 获取分类JSON数据
+	 * @return
+	 */
+	Map<String, List<Catalog2VO>> getCatalogJson();
 }

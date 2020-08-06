@@ -23,4 +23,5 @@ public interface SpuInfoMapper extends BaseMapper<SpuInfo> {
 	 */
 	List<SpuInfoVO> selectSpuInfoPage(IPage page, SpuInfoVO spuInfo);
 
+    void updateSpuStatus(Long spuId, int code);
 }

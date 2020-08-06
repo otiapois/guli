@@ -2,25 +2,22 @@ package com.fouo.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.core.injector.methods.SelectBatchByIds;
-import com.fouo.common.support.Condition;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fouo.product.entity.Attr;
 import com.fouo.product.entity.AttrAttrgroupRelation;
 import com.fouo.product.entity.Category;
 import com.fouo.product.mapper.AttrAttrgroupRelationMapper;
 import com.fouo.product.mapper.AttrGroupMapper;
+import com.fouo.product.mapper.AttrMapper;
 import com.fouo.product.mapper.CategoryMapper;
+import com.fouo.product.service.IAttrService;
 import com.fouo.product.service.ICategoryService;
 import com.fouo.product.vo.AttrVO;
-import com.fouo.product.mapper.AttrMapper;
-import com.fouo.product.service.IAttrService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fouo.product.vo.BrandVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -199,4 +196,10 @@ public class AttrServiceImpl extends ServiceImpl<AttrMapper, Attr> implements IA
         }
         return null;
     }
+
+    @Override
+    public List<Long> selectSearchAttrs(List<Long> attrIds) {
+        return baseMapper.selectSearchAttrs(attrIds);
+    }
+
 }

@@ -40,3 +40,6 @@ spring:
       max-file-size: 1MB
       # 最大支持请求大小
       max-request-size: 30MB
+  thymeleaf:
+    # 关闭缓存,在开发期间可以实时看到数据
+    cache: false

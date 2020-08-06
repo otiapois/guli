@@ -37,4 +37,10 @@ public interface ISpuInfoService extends IService<SpuInfo> {
 	 */
 	boolean saveBaseSpuInfo(SpuInfo spuInfo);
 
+	/**
+	 * 商品上架
+	 * @param spuId
+	 * @return
+	 */
+	boolean up(Long spuId);
 }

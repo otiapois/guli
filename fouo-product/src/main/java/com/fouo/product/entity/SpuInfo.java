@@ -47,7 +47,7 @@ public class SpuInfo implements Serializable {
      * 所属分类id
      */
     @ApiModelProperty(value = "所属分类id")
-    private Long catelogId;
+    private Long catalogId;
     /**
      * 品牌id
      */

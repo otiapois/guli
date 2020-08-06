@@ -11,6 +11,11 @@
 
     <artifactId>fouo-elasticsearch</artifactId>
 
+    <!--规定elasticsearch 版本-->
+    <properties>
+        <elasticsearch.version>7.4.2</elasticsearch.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.fouo</groupId>

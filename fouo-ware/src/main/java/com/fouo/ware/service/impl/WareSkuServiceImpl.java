@@ -2,6 +2,7 @@ package com.fouo.ware.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fouo.ware.entity.WareSku;
+import com.fouo.ware.vo.SkuHasStockV0;
 import com.fouo.ware.vo.WareSkuVO;
 import com.fouo.ware.mapper.WareSkuMapper;
 import com.fouo.ware.service.IWareSkuService;
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 商品库存 服务实现类
@@ -42,6 +44,23 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuMapper, WareSku> impl
 			baseMapper.insert(wareSku);
 		}
 		this.baseMapper.addStock(skuId,wareId,skuNum);
+	}
+
+	@Override
+	public List<SkuHasStockV0> getSkusHasStock(List<Long> skuIds) {
+		List<SkuHasStockV0> collect = skuIds.stream().map(skuId -> {
+			SkuHasStockV0 skuHasStockV0 = new SkuHasStockV0();
+			//查询当前sku的总库存量
+			Long count = baseMapper.selectSkuStock(skuId);
+			skuHasStockV0.setSkuId(skuId);
+			if(count >0){
+				skuHasStockV0.setHasStock(true);
+			}else{
+				skuHasStockV0.setHasStock(false);
+			}
+			return skuHasStockV0;
+		}).collect(Collectors.toList());
+		return collect;
 	}
 
 }

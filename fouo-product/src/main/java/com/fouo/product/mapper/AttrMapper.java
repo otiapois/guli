@@ -4,6 +4,8 @@ import com.fouo.product.entity.Attr;
 import com.fouo.product.vo.AttrVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -38,4 +40,11 @@ public interface AttrMapper extends BaseMapper<Attr> {
 	 * @return
 	 */
 	List<Attr> selectSaleAttrPage(IPage<AttrVO> page, AttrVO attrVO);
+
+	/**
+	 * 检索出 可被查询的所有属性
+	 * @param attrIds
+	 * @return
+	 */
+    List<Long> selectSearchAttrs(@Param("attrIds") List<Long> attrIds);
 }

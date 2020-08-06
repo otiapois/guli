@@ -38,7 +38,10 @@ public interface CommonConstant {
      */
     String APPLICATION_WARE_NAME = AppConstant.APPLICATION_NAME_PREFIX + "ware";
 
-
+    /**
+     * 仓储模块名称
+     */
+    String APPLICATION_ELASTICSEARCH_NAME = AppConstant.APPLICATION_NAME_PREFIX + "elasticsearch";
     /**
      * nacos dev 地址
      */

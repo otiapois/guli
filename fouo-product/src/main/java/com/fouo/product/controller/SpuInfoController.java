@@ -70,6 +70,14 @@ public class SpuInfoController {
 	}
 
 	/**
+	 * spu上架
+	 */
+	@GetMapping("/up")
+	@ApiOperation(value = "spu上架", notes = "传入spuId")
+	public R spuUp  (@Valid @RequestParam Long spuId) {
+		return R.status(spuInfoService.up(spuId));
+	}
+	/**
 	 * 修改 spu信息
 	 */
 	@PostMapping("/update")

@@ -7,7 +7,7 @@
         <id column="id" property="id"/>
         <result column="spu_name" property="spuName"/>
         <result column="spu_description" property="spuDescription"/>
-        <result column="catelog_id" property="catelogId"/>
+        <result column="catalog_id" property="catalogId"/>
         <result column="brand_id" property="brandId"/>
         <result column="weight" property="weight"/>
         <result column="publish_status" property="publishStatus"/>
@@ -22,8 +22,8 @@
             and (spu_name like concat('%', #{spuInfo.searchKeyword}, '%')
             or spu_description like concat('%', #{spuInfo.searchKeyword}, '%'))
         </if>
-        <if test="spuInfo.catelogId != null">
-            and catelog_id = #{spuInfo.catelogId}
+        <if test="spuInfo.catalogId != null">
+            and catalog_id = #{spuInfo.catalogId}
         </if>
         <if test="spuInfo.brandId != null">
             and brand_id = #{spuInfo.brandId}
@@ -34,4 +34,7 @@
 
     </select>
 
+    <update id="updateSpuStatus">
+        update pms_spu_info set publish_status = #{code},update_time = NOW() where id = #{spuId}
+    </update>
 </mapper>
