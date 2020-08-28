@@ -4,6 +4,8 @@ import com.fouo.product.entity.SkuSaleAttrValue;
 import com.fouo.product.vo.SkuSaleAttrValueVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.fouo.product.vo.ext.ItemSaleAttrsVO;
+
 import java.util.List;
 
 /**
@@ -23,4 +25,10 @@ public interface SkuSaleAttrValueMapper extends BaseMapper<SkuSaleAttrValue> {
 	 */
 	List<SkuSaleAttrValueVO> selectSkuSaleAttrValuePage(IPage page, SkuSaleAttrValueVO skuSaleAttrValue);
 
+	/**
+	 * 根据spuId获取销售属性
+	 * @param spuId
+	 * @return
+	 */
+    List<ItemSaleAttrsVO> getSaleAttrsBySpuId(Long spuId);
 }

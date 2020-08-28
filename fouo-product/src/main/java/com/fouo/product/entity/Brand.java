@@ -66,7 +66,6 @@ public class Brand implements Serializable {
      * 检索首字母
      */
     @ApiModelProperty(value = "检索首字母")
-    @Pattern(regexp = "/^[a-zA-Z]$",message = "检索首字母必须是一个字母",groups = {AddGroup.class,UpdateGroup.class})
     private String firstLetter;
     /**
      * 排序

@@ -17,12 +17,17 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -55,7 +60,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     public IPage<Category> listWithTree(Category category, Query query) {
         //获取所有根据查询条件获取的所有商品列表
         IPage<Category> page = page(Condition.getPage(query), Condition.getQueryWrapper(category));
-        List<Category> entities = page.getRecords();
+        List<Category> entities = baseMapper.selectList(null);
+//        List<Category> entities = page.getRecords();
 
         //组成父子树形结构
         List<Category> childrenList = entities.stream().
@@ -88,6 +94,19 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         return paths.toArray(new Long[paths.size()]);
     }
 
+    /**
+     * @param category
+     * @return
+     * @CacheEvict 失效模式 修改数据之后 将缓存清空  再查询的时候再次添加完整的缓存
+     * 清除多个缓存
+     */
+
+//    @Caching(evict = {
+//            @CacheEvict(value = {"category"}, key = "getTopCategory"),
+//            @CacheEvict(value = {"category"}, key = "getCatalogJson")
+//    })
+    @CacheEvict(value = "category",allEntries = true)
+    @Transactional
     @Override
     public boolean updateDetail(Category category) {
         //保证冗余字段的数据一致
@@ -100,15 +119,62 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     }
 
     //每一个需要缓存的数据都来指定要放到哪个名字的缓存中【缓存的分区】 按照业务类型分
-    @Cacheable({"category"/*,"product"*/})  //代表当前方法的结果需要缓存，如果缓存中有，则方法不需要调用。如果缓存中没有，则需要调用缓存，并将结果存入到缓存中去
+    //在查询的时候  设置 sync=true  会调用 具有锁的get方法 则会解决 缓存击穿的问题
+    @Cacheable(value = {"category"/*,"product"*/}, key = "#root.method.name",sync = true)
+    //代表当前方法的结果需要缓存，如果缓存中有，则方法不需要调用。如果缓存中没有，则需要调用缓存，并将结果存入到缓存中去
     @Override
     public List<Category> getTopCategory() {
         List<Category> categorys = baseMapper.selectList(new QueryWrapper<Category>().eq("parent_cid", 0));
         return categorys;
     }
 
+
+    @Cacheable(value = {"category"}, key = "#root.methodName",sync = true)
     @Override
     public Map<String, List<Catalog2VO>> getCatalogJson() {
+        List<Category> categories = baseMapper.selectList(null);
+        //查询所有1级分类
+        List<Category> topCategory = getParentCid(categories, 0L);
+        //封装数据
+        Map<String, List<Catalog2VO>> map = topCategory.stream().collect(Collectors.toMap(k -> {
+                    return k.getCatId().toString();
+                },
+                v -> {
+                    //查出当前分类(一级)的二级分类
+                    List<Category> secondList = getParentCid(categories, v.getCatId());
+                    //二级分类非空时
+                    List<Catalog2VO> catalog2VOS = null;
+                    if (secondList != null && secondList.size() > 0) {
+                        catalog2VOS = secondList.stream().map(item -> {
+                            //创建二级分类VO
+                            Catalog2VO catalog2VO = new Catalog2VO();
+                            catalog2VO.setCatalog1Id(v.getCatId().toString());
+                            catalog2VO.setId(item.getCatId().toString());
+                            catalog2VO.setName(item.getName());
+
+                            List<Catalog3VO> collect = null;
+                            List<Category> thirdList = getParentCid(categories, item.getCatId());
+                            if (thirdList != null && thirdList.size() > 0) {
+                                collect = thirdList.stream().map(entity -> {
+                                    Catalog3VO catalog3VO = new Catalog3VO();
+                                    catalog3VO.setCatalog2Id(item.getCatId().toString());
+                                    catalog3VO.setId(entity.getCatId().toString());
+                                    catalog3VO.setName(entity.getName().toString());
+                                    return catalog3VO;
+                                }).collect(Collectors.toList());
+                            }
+
+                            catalog2VO.setCatalog3List(collect);
+                            return catalog2VO;
+
+                        }).collect(Collectors.toList());
+                    }
+                    return catalog2VOS;
+                }));
+        return map;
+    }
+
+    public Map<String, List<Catalog2VO>> getCatalogJson2() {
         Gson gson = new Gson();
         /**
          * 缓存穿透 - 大并发强行查询一个不存在的缓存  导致大并发请求都不经过缓存 直接查询数据库 导致数据库失效（给空值添加缓存 设置短暂存活时间）
@@ -141,13 +207,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
      * 从数据库查询并封装分类数据
      * 采用分布式锁的形式
      * 使用redisson
-     *
+     * <p>
      * 缓存里面的数据如何和数据库保持一致
      * 缓存数据一致性
-     *
+     * <p>
      * 1.双写模式
      * 2.失效模式
-     * 
+     *
      * @return
      */
     public Map<String, List<Catalog2VO>> getCatalogJsonFromDBWithRedissonLock() {

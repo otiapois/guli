@@ -4,6 +4,7 @@ import com.fouo.product.entity.SkuInfo;
 import com.fouo.product.vo.SkuInfoVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.fouo.product.vo.ext.SkuItemVO;
 
 import java.util.List;
 
@@ -30,4 +31,11 @@ public interface ISkuInfoService extends IService<SkuInfo> {
 	 * @return
 	 */
     List<SkuInfo> getSkusBySpuId(Long spuId);
+
+	/**
+	 * 根据skuId获取sku详情信心
+	 * @param skuId
+	 * @return
+	 */
+	SkuItemVO item(Long skuId);
 }

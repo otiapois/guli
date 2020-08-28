@@ -10,7 +10,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="fouo-oauth2" />
         <module name="fouo-elasticsearch" />
+        <module name="fouo-cart" />
         <module name="renren-generator" />
         <module name="fouo-ware" />
         <module name="fouo-gateway" />
@@ -26,11 +28,13 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="fouo-cart" options="-parameters -parameters" />
       <module name="fouo-common" options="-parameters -parameters" />
       <module name="fouo-coupon" options="-parameters -parameters" />
       <module name="fouo-elasticsearch" options="-parameters -parameters" />
       <module name="fouo-gateway" options="-parameters -parameters" />
       <module name="fouo-member" options="-parameters -parameters" />
+      <module name="fouo-oauth2" options="-parameters -parameters" />
       <module name="fouo-order" options="-parameters -parameters" />
       <module name="fouo-product" options="-parameters -parameters" />
       <module name="fouo-third-party" options="-parameters -parameters" />

@@ -14,6 +14,7 @@ import com.fouo.product.vo.AttrGroupVO;
 import com.fouo.product.mapper.AttrGroupMapper;
 import com.fouo.product.service.IAttrGroupService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fouo.product.vo.ext.SpuItemAttrGroupVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,5 +107,12 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupMapper, AttrGroup
             return groupVO;
         }).collect(Collectors.toList());
         return attrGroupVOS;
+    }
+
+    @Override
+    public List<SpuItemAttrGroupVO> getAttrGroupWithAttrsBySpuId(Long spuId,Long catalogId ) {
+        //查询当前spu对应的所有属性的分组信息
+        // 以及当前分组下所有属性对应的值
+        return baseMapper.getAttrGroupWithAttrsBySpuId(spuId,catalogId);
     }
 }

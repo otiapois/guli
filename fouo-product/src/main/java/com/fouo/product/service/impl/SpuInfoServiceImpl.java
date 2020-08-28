@@ -238,6 +238,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoMapper, SpuInfo> impl
             skuEsModel.setBrandImg(brand.getLogo());
             Category category = categoryService.getById(sku.getCatelogId());
             skuEsModel.setCatalogName(category.getName());
+            skuEsModel.setCatalogId(sku.getCatelogId());
             //设置attrs
             skuEsModel.setAttrs(attrsList);
 

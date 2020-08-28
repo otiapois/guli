@@ -17,4 +17,15 @@
         select * from pms_sku_sale_attr_value where is_deleted = 0
     </select>
 
+
+    <select id="getSaleAttrsBySpuId" resultType="com.fouo.product.vo.ext.ItemSaleAttrsVO">
+        select
+           ssav.attr_id attr_id,
+           ssav.attr_name attr_name,
+           group_concat(distinct ssav.`attr_value`) attr_values
+      from pms_sku_info sinfo
+      left join pms_sku_sale_attr_value ssav on ssav.sku_id=sinfo.sku_id
+      where sinfo.spu_id = #{spuId}
+      group by ssav.attr_id,ssav.attr_name
+    </select>
 </mapper>

@@ -6,6 +6,7 @@ import com.fouo.product.entity.AttrGroup;
 import com.fouo.product.vo.AttrGroupVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.fouo.product.vo.ext.SpuItemAttrGroupVO;
 
 import java.util.List;
 
@@ -39,4 +40,11 @@ public interface IAttrGroupService extends IService<AttrGroup> {
 	 * @return
 	 */
 	List<AttrGroupVO> getAttrGroupWithAttrs(Long catalogId);
+
+	/**
+	 * 根据SpuId查询
+	 * @param spuId
+	 * @return
+	 */
+    List<SpuItemAttrGroupVO> getAttrGroupWithAttrsBySpuId(Long spuId,Long catelogId);
 }

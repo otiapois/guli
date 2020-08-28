@@ -24,4 +24,8 @@
         </if>
     </select>
 
+    <select id="getDefaultLevel" resultType="com.fouo.member.entity.MemberLevel">
+        SELECT * FROM `ums_member_level` WHERE default_status = 1
+    </select>
+
 </mapper>

@@ -1,20 +1,11 @@
 package com.fouo.product;
 
-import com.aliyun.oss.OSS;
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.SpringCloudApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
 
 /**
  * 商品服务启动类
@@ -23,6 +14,7 @@ import java.io.FileNotFoundException;
  */
 
 @MapperScan("com.fouo.product.mapper")
+@EnableSpringHttpSession
 @EnableCaching
 @EnableFeignClients
 @SpringCloudApplication

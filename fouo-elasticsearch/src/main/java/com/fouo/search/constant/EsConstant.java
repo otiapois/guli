@@ -8,4 +8,5 @@ package com.fouo.search.constant;
  */
 public class EsConstant {
     public static final String PRODUCT_INDEX = "product";//sku数据在es中索引
+    public static final int PRODUCT_PAGESIZE = 5; //商品页面大小
 }

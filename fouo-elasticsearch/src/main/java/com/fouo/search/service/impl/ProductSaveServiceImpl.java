@@ -40,7 +40,6 @@ class ProductSaveServiceImpl extends ServiceImpl<ProductSaveMapper, SkuEsModel> 
             indexRequest.id(model.getSkuId().toString());
             String modelJson = gson.toJson(model);
             indexRequest.source(modelJson, XContentType.JSON);
-
             bulkRequest.add(indexRequest);
         }
         //批量执行索引数据操作

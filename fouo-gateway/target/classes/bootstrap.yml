@@ -29,6 +29,12 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/product(?<segment>.*),/product$\{segment} #将/api 路由到/ 即将api变成空
+        - id: oauth2_route
+          uri: lb://fouo-oauth2
+          predicates:
+            - Path=/api/oauth2/**
+          filters:
+            - RewritePath=/api/oauth2(?<segment>.*),/oauth2$\{segment} #将/api 路由到/ 即将api变成空
         - id: product_route
           uri: lb://fouo-ware
           predicates:
@@ -65,10 +71,19 @@ spring:
             - Path=/api/**  #断言，路径相匹配的进行路由
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment} #将/api 路由到/renren-fast
-        - id: fouomall_route
+        - id: fouomall_host_route
           uri: lb://fouo-product
           predicates:
-            - Host=**.fouomall.com
+            - Host=fouomall.com,item.fouomall.com
+        - id: fouomall_search_route
+          uri: lb://fouo-elasticsearch
+          predicates:
+            - Host=search.fouomall.com
+        - id: fouomall_oauth2_route
+          uri: lb://fouo-oauth2
+          predicates:
+            - Host=oauth2.fouomall.com
+
   #SpringMVC上传文件配置
   servlet:
     multipart:
@@ -82,5 +97,3 @@ spring:
       max-file-size: 1MB
       # 最大支持请求大小
       max-request-size: 30MB
-logging:
-  level: debug

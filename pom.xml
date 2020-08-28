@@ -51,6 +51,8 @@
         <module>renren-fast</module>
         <module>renren-generator</module>
         <module>fouo-elasticsearch</module>
+        <module>fouo-oauth2</module>
+        <module>fouo-cart</module>
     </modules>
 
     <parent>

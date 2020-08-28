@@ -23,4 +23,9 @@ public interface MemberLevelMapper extends BaseMapper<MemberLevel> {
 	 */
 	List<MemberLevelVO> selectMemberLevelPage(IPage page, MemberLevelVO memberLevel);
 
+	/**
+	 * 获取默认等级
+	 * @return
+	 */
+    MemberLevel getDefaultLevel();
 }
