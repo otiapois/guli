@@ -24,7 +24,6 @@ public class SessionConfig {
 
         serializer.setCookieName("FOUOSESSION");
         serializer.setDomainName("fouomall.com");
-//        serializer.setDomainNamePattern("^.+?\\.(\\w+\\.[a-z]+)$");
         return serializer;
     }
 
@@ -35,8 +34,6 @@ public class SessionConfig {
      */
     @Bean
     public RedisSerializer<Object> springSessionDefaultRedisSerializer() {
-        //return new FastJsonRedisSerializer();
-        //return new GenericFastJsonRedisSerializer();
         return new GenericJackson2JsonRedisSerializer();
     }
 }

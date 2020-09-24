@@ -39,4 +39,10 @@ public interface IProductAttrValueService extends IService<ProductAttrValue> {
 	 */
 	boolean updateSpuAttr(Long spuId, List<ProductAttrValue> entities);
 
+	/**
+	 * 根据skuId获取对应参数
+	 * @param skuId
+	 * @return
+	 */
+    List<String> getSkuSaleAttrValues(Long skuId);
 }

@@ -18,10 +18,10 @@
 
     <dependencies>
         <dependency>
-        <groupId>com.fouo</groupId>
-        <artifactId>fouo-common</artifactId>
-        <version>1.0.0 RELEASE</version>
-    </dependency>
+            <groupId>com.fouo</groupId>
+            <artifactId>fouo-common</artifactId>
+            <version>1.0.0 RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -58,6 +58,11 @@
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+        <!--zipkin-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
     </dependencies>
 

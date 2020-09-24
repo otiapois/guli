@@ -44,4 +44,9 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueMap
 		}).collect(Collectors.toList());
 		return saveBatch(collect);
 	}
+
+	@Override
+	public List<String> getSkuSaleAttrValues(Long skuId) {
+		return baseMapper.getSkuSaleAttrValues(skuId);
+	}
 }

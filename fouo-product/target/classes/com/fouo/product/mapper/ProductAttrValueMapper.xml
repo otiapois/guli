@@ -18,4 +18,10 @@
         select * from pms_product_attr_value where is_deleted = 0
     </select>
 
+    <select id="getSkuSaleAttrValues" resultType="java.lang.String">
+            select concat(attr_name,"：",attr_value)
+            from `pms_sku_sale_attr_value`
+            where sku_id = #{skuId}
+    </select>
+
 </mapper>

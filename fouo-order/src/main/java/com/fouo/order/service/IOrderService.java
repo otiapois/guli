@@ -1,6 +1,7 @@
 package com.fouo.order.service;
 
 import com.fouo.order.entity.Order;
+import com.fouo.order.vo.OrderConfirmVO;
 import com.fouo.order.vo.OrderVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -22,4 +23,9 @@ public interface IOrderService extends IService<Order> {
 	 */
 	IPage<OrderVO> selectOrderPage(IPage<OrderVO> page, OrderVO order);
 
+	/**
+	 * 返回需要的订单确认页数据
+	 * @return
+	 */
+    OrderConfirmVO confirmOrder();
 }

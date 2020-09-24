@@ -48,6 +48,7 @@ public class OAuth2Controller {
          * 使用map进行传参
          */
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+
         parameters.add("client_id", "4017199270");
         parameters.add("client_secret", "1119736f01f3c5acb76c6eb73063d309");
         parameters.add("grant_type", "authorization_code");

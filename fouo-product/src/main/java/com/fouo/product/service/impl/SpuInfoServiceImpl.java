@@ -253,7 +253,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoMapper, SpuInfo> impl
          *  1、构造请求数据，将对象转换为json
          *      buildTemplateFromArgs.create（argv）
          *  2、发送请求，进行执行,执行成功会解码数据
-         *      executeAndDecode(template)
+         *      executeAndDecode(template)，.+
          *  3、
          */
         //保存成功

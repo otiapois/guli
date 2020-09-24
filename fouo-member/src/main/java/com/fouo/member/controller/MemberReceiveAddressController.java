@@ -16,6 +16,8 @@ import com.fouo.member.entity.MemberReceiveAddress;
 import com.fouo.member.vo.MemberReceiveAddressVO;
 import com.fouo.member.service.IMemberReceiveAddressService;
 
+import java.util.List;
+
 /**
  * 会员收货地址 控制器
  *
@@ -30,6 +32,13 @@ public class MemberReceiveAddressController {
 
 	private IMemberReceiveAddressService memberReceiveAddressService;
 
+	/**
+	 * 列表
+	 */
+	@GetMapping("/{memberId}/address")
+	public List<MemberReceiveAddress> getAddress(@PathVariable("memberId") Long memberId) {
+		return memberReceiveAddressService.getAddress(memberId);
+	}
 	/**
 	 * 详情
 	 */

@@ -23,4 +23,10 @@ public interface ProductAttrValueMapper extends BaseMapper<ProductAttrValue> {
 	 */
 	List<ProductAttrValueVO> selectProductAttrValuePage(IPage page, ProductAttrValueVO productAttrValue);
 
+	/**
+	 * 根据skuId获取相应参数
+	 * @param skuId
+	 * @return
+	 */
+    List<String> getSkuSaleAttrValues(Long skuId);
 }

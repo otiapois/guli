@@ -29,6 +29,12 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/product(?<segment>.*),/product$\{segment} #将/api 路由到/ 即将api变成空
+        - id: product_route
+          uri: lb://fouo-cart
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - RewritePath=/api/cart(?<segment>.*),/cart$\{segment} #将/api 路由到/ 即将api变成空
         - id: oauth2_route
           uri: lb://fouo-oauth2
           predicates:
@@ -83,7 +89,26 @@ spring:
           uri: lb://fouo-oauth2
           predicates:
             - Host=oauth2.fouomall.com
-
+        - id: fouomall_cart_route
+          uri: lb://fouo-cart
+          predicates:
+            - Host=cart.fouomall.com
+        - id: fouomall_order_route
+          uri: lb://fouo-order
+          predicates:
+            - Host=order.fouomall.com
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.127.134:19090
+  zipkin:
+    base-url: http://192.168.127.134:9411/ # zipkin的服务器地址
+    discovery-client-enabled: false #关闭服务发现,否则SpringCloud会把zipkin的url当做服务名称
+    sender:
+      type: web # 设置使用 http的方式传输数据
+  sleuth:
+    sampler:
+      probability: 1 #设置抽样采集率为100%，默认为0.1 即10%
   #SpringMVC上传文件配置
   servlet:
     multipart:
@@ -97,3 +122,12 @@ spring:
       max-file-size: 1MB
       # 最大支持请求大小
       max-request-size: 30MB
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    org.springframework.cloud.openfeign: debug
+    org.springframework.cloud.sleuth: debug

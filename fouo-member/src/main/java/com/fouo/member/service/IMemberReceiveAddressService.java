@@ -5,6 +5,8 @@ import com.fouo.member.vo.MemberReceiveAddressVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
+import java.util.List;
+
 /**
  * 会员收货地址 服务类
  *
@@ -22,4 +24,10 @@ public interface IMemberReceiveAddressService extends IService<MemberReceiveAddr
 	 */
 	IPage<MemberReceiveAddressVO> selectMemberReceiveAddressPage(IPage<MemberReceiveAddressVO> page, MemberReceiveAddressVO memberReceiveAddress);
 
+	/**
+	 * 根据会员id获取会员的收获地址列表
+	 * @param memberId
+	 * @return
+	 */
+    List<MemberReceiveAddress> getAddress(Long memberId);
 }

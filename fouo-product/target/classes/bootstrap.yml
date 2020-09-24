@@ -27,6 +27,18 @@ spring:
           - refresh: true
             data-id: spring-cloud-oss.yaml # oss配置
             group: COMMON_GROUP # 通用配置组
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.127.134:19090
+  zipkin:
+    base-url: http://192.168.127.134:9411/ # zipkin的服务器地址
+    discovery-client-enabled: false #关闭服务发现,否则SpringCloud会把zipkin的url当做服务名称
+    sender:
+      type: web # 设置使用 http的方式传输数据
+  sleuth:
+    sampler:
+      probability: 1 #设置抽样采集率为100%，默认为0.1 即10%
   #SpringMVC上传文件配置
   servlet:
     multipart:
@@ -43,3 +55,15 @@ spring:
   thymeleaf:
     # 关闭缓存,在开发期间可以实时看到数据
     cache: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+feign:    # sentinel对feign的支持配置
+  sentinel:
+    enabled: true
+logging:
+  level:
+    org.springframework.cloud.openfeign: debug
+    org.springframework.cloud.sleuth: debug

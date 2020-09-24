@@ -3,7 +3,9 @@ package com.fouo.product.feign;
 import com.fouo.common.support.R;
 import com.fouo.common.to.SkuReductionTO;
 import com.fouo.product.vo.ext.Bounds;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ICouponClientFallback implements ICouponClient{
     @Override
     public R saveSpuBounds(Bounds bounds) {

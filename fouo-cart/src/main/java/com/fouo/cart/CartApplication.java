@@ -7,6 +7,12 @@ import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
 
+/**
+ * 购物车微服务启动类
+ *
+ * @author fouo
+ * @date 2020/8/28 15:18
+ */
 @MapperScan("com.fouo.cart.mapper")
 @EnableSpringHttpSession
 @EnableCaching

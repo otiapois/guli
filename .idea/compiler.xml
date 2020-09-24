@@ -12,17 +12,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="fouo-oauth2" />
         <module name="fouo-elasticsearch" />
-        <module name="fouo-cart" />
         <module name="renren-generator" />
-        <module name="fouo-ware" />
-        <module name="fouo-gateway" />
         <module name="fouo-order" />
         <module name="fouo-coupon" />
-        <module name="renren-fast" />
+        <module name="fouo-ware" />
         <module name="fouo-product" />
+        <module name="fouo-common" />
+        <module name="fouo-gateway" />
+        <module name="renren-fast" />
+        <module name="fouo-cart" />
         <module name="fouo-third-party" />
         <module name="fouo-member" />
-        <module name="fouo-common" />
       </profile>
     </annotationProcessing>
   </component>
