@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fouo.product.mapper.AttrGroupMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="attrGroupResultMap" type="com.fouo.product.entity.AttrGroup">
+        <id column="attr_group_id" property="attrGroupId"/>
+        <result column="attr_group_name" property="attrGroupName"/>
+        <result column="sort" property="sort"/>
+        <result column="descript" property="descript"/>
+        <result column="icon" property="icon"/>
+        <result column="catelog_id" property="catelogId"/>
+    </resultMap>
+
+
+    <select id="selectAttrGroupPage" resultMap="attrGroupResultMap">
+        select * from pms_attr_group where is_deleted = 0
+        <if test="attrGroup.searchKeyword != null and  attrGroup.searchKeyword != ''">
+            and (attr_group_name like concat('%', #{attrGroup.searchKeyword}, '%')
+            or descript like concat('%', #{attrGroup.searchKeyword}, '%')
+            or attr_group_id = #{attrGroup.searchKeyword})
+        </if>
+        <if test="attrGroup.catelogId != null">
+            and catelog_id = #{attrGroup.catelogId}
+        </if>
+    </select>
+
+    <select id="getGroupNameById" resultType="java.lang.String">
+            SELECT attr_group_name FROM pms_attr_group WHERE attr_group_id = #{groupId}
+    </select>
+
+    <resultMap id="spuItemAttrGroupVO" type="com.fouo.product.vo.ext.SpuItemAttrGroupVO">
+        <result property="groupName" column="attr_group_name"/>
+        <collection property="attrs" ofType="com.fouo.product.vo.ext.SpuBaseAttrVO">
+            <result property="attrName" column="attr_name"/>
+            <result property="attrValue" column="attr_value"/>
+        </collection>
+    </resultMap>
+
+    <select id="getAttrGroupWithAttrsBySpuId" resultMap="spuItemAttrGroupVO">
+        select
+        ag.attr_group_id,
+        ag.attr_group_name,
+        aar.attr_id,
+        pav.attr_name,
+        pav.attr_value
+        from pms_attr_group ag
+               left join pms_attr_attrgroup_relation aar on aar.attr_group_id = ag.attr_group_id
+               left join pms_product_attr_value pav on pav.attr_id = aar.attr_id
+        where catelog_id = #{catalogId} and spu_id = #{spuId}
+    </select>
+
+</mapper>

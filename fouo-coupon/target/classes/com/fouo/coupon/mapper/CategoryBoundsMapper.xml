@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fouo.coupon.mapper.CategoryBoundsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="categoryBoundsResultMap" type="com.fouo.coupon.entity.CategoryBounds">
+        <id column="id" property="id"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="grow_bounds" property="growBounds"/>
+        <result column="buy_bounds" property="buyBounds"/>
+        <result column="work" property="work"/>
+    </resultMap>
+
+
+    <select id="selectCategoryBoundsPage" resultMap="categoryBoundsResultMap">
+        select * from sms_category_bounds where is_deleted = 0
+    </select>
+
+</mapper>

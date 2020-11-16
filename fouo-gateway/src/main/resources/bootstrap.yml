@@ -1,0 +1,133 @@
+nacos:
+  server:
+    addr: 192.168.127.134:8848
+spring:
+  application:
+    name: fouo-gateway
+  main:
+    allow-bean-definition-overriding: true # Spring Boot 2.1 需要设定
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.server.addr}
+        namespace: cc192f49-2639-4a78-96d7-62e1584e9371
+        cluster-name: DEFAULT
+      config:
+        server-addr: ${nacos.server.addr} # 配置中心地址
+        file-extension: yaml
+        namespace: cc192f49-2639-4a78-96d7-62e1584e9371 # 命令行注入
+        group: SERVICE_GROUP # 业务组
+        ext-config:
+          - refresh: true
+            data-id: spring-boot-datasource.yaml # spring boot starter配置
+            group: COMMON_GROUP # 通用配置组
+    gateway:
+      routes:
+        - id: product_route
+          uri: lb://fouo-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/product(?<segment>.*),/product$\{segment} #将/api 路由到/ 即将api变成空
+        - id: product_route
+          uri: lb://fouo-cart
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - RewritePath=/api/cart(?<segment>.*),/cart$\{segment} #将/api 路由到/ 即将api变成空
+        - id: oauth2_route
+          uri: lb://fouo-oauth2
+          predicates:
+            - Path=/api/oauth2/**
+          filters:
+            - RewritePath=/api/oauth2(?<segment>.*),/oauth2$\{segment} #将/api 路由到/ 即将api变成空
+        - id: product_route
+          uri: lb://fouo-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/ware(?<segment>.*),/ware$\{segment} #将/api 路由到/ 即将api变成空
+        - id: product_route
+          uri: lb://fouo-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/coupon(?<segment>.*),/coupon$\{segment} #将/api 路由到/ 即将api变成空
+        - id: member_route
+          uri: lb://fouo-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/member(?<segment>.*),/member$\{segment} #将/api 路由到/ 即将api变成空
+        - id: fouo-third-party
+          uri: lb://fouo-third-party
+          predicates:
+            - Path=/api/third/**
+          filters:
+            - RewritePath=/api/third(?<segment>.*),/third$\{segment} #将/api 路由到/ 即将api变成空
+        - id: fouo-third-party
+          uri: lb://fouo-elasticsearch
+          predicates:
+            - Path=/api/elasticsearch/**
+          filters:
+            - RewritePath=/api/elasticsearch(?<segment>.*),/elasticsearch$\{segment} #将/api 路由到/ 即将api变成空
+        - id: admin_route #路由的ID，没有固定的规则但要求唯一，建议配合项目名称进行设置
+          uri: lb://renren-fast #匹配后提供的路由地址
+          predicates:
+            - Path=/api/**  #断言，路径相匹配的进行路由
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment} #将/api 路由到/renren-fast
+        - id: fouomall_host_route
+          uri: lb://fouo-product
+          predicates:
+            - Host=fouomall.com,item.fouomall.com
+        - id: fouomall_search_route
+          uri: lb://fouo-elasticsearch
+          predicates:
+            - Host=search.fouomall.com
+        - id: fouomall_oauth2_route
+          uri: lb://fouo-oauth2
+          predicates:
+            - Host=oauth2.fouomall.com
+        - id: fouomall_cart_route
+          uri: lb://fouo-cart
+          predicates:
+            - Host=cart.fouomall.com
+        - id: fouomall_order_route
+          uri: lb://fouo-order
+          predicates:
+            - Host=order.fouomall.com
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.127.134:19090
+  zipkin:
+    base-url: http://192.168.127.134:9411/ # zipkin的服务器地址
+    discovery-client-enabled: false #关闭服务发现,否则SpringCloud会把zipkin的url当做服务名称
+    sender:
+      type: web # 设置使用 http的方式传输数据
+  sleuth:
+    sampler:
+      probability: 1 #设置抽样采集率为100%，默认为0.1 即10%
+  #SpringMVC上传文件配置
+  servlet:
+    multipart:
+      #默认支持文件上传.
+      enabled: true
+      #支持文件写入磁盘.
+      file-size-threshold: 0
+      # 上传文件的临时目录
+      location:
+      # 最大支持文件大小
+      max-file-size: 1MB
+      # 最大支持请求大小
+      max-request-size: 30MB
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    org.springframework.cloud.openfeign: debug
+    org.springframework.cloud.sleuth: debug

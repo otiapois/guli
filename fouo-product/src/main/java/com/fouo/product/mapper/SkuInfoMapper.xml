@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fouo.product.mapper.SkuInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="skuInfoResultMap" type="com.fouo.product.entity.SkuInfo">
+        <id column="sku_id" property="skuId"/>
+        <result column="spu_id" property="spuId"/>
+        <result column="sku_name" property="skuName"/>
+        <result column="sku_desc" property="skuDesc"/>
+        <result column="catelog_id" property="catelogId"/>
+        <result column="brand_id" property="brandId"/>
+        <result column="sku_default_img" property="skuDefaultImg"/>
+        <result column="sku_title" property="skuTitle"/>
+        <result column="sku_subtitle" property="skuSubtitle"/>
+        <result column="price" property="price"/>
+        <result column="sale_count" property="saleCount"/>
+    </resultMap>
+
+
+    <select id="selectSkuInfoPage" resultMap="skuInfoResultMap">
+        select * from pms_sku_info where  is_deleted = 0
+
+        <if test="skuInfo.searchKeyword != null and  skuInfo.searchKeyword != ''">
+            and (sku_name like concat('%', #{skuInfo.searchKeyword}, '%')
+            or sku_desc like concat('%', #{skuInfo.searchKeyword}, '%')
+            or sku_title like concat('%', #{skuInfo.searchKeyword}, '%'))
+        </if>
+
+        <if test="skuInfo.catelogId != null">
+            and catelog_id = #{skuInfo.catelogId}
+        </if>
+        <if test="skuInfo.brandId != null">
+            and brand_id = #{skuInfo.brandId}
+        </if>
+
+        <if test="skuInfo.min != null">
+            and price >= #{skuInfo.min}
+        </if>
+        <if test="skuInfo.max != null and skuInfo.max > 0 ">
+            and #{skuInfo.max} >= price
+        </if>
+    </select>
+
+</mapper>

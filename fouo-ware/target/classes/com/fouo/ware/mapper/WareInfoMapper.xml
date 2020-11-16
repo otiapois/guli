@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fouo.ware.mapper.WareInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="wareInfoResultMap" type="com.fouo.ware.entity.WareInfo">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+        <result column="areacode" property="areacode"/>
+    </resultMap>
+
+
+    <select id="selectWareInfoPage" resultMap="wareInfoResultMap">
+        select * from wms_ware_info where is_deleted = 0
+
+        <if test="wareInfo.id != null">
+            and id = #{wareInfo.id}
+        </if>
+
+        <if test="wareInfo.searchKeyword != null and  wareInfo.searchKeyword != ''">
+            and (name like concat('%', #{wareInfo.searchKeyword}, '%')
+            or address like concat('%', #{wareInfo.searchKeyword}, '%')
+            or areacode like concat('%', #{wareInfo.searchKeyword}, '%')
+            or id = #{wareInfo.searchKeyword}
+            )
+        </if>
+
+    </select>
+
+</mapper>

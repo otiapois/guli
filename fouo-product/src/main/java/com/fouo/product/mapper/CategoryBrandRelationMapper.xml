@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fouo.product.mapper.CategoryBrandRelationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="categoryBrandRelationResultMap" type="com.fouo.product.entity.CategoryBrandRelation">
+        <id column="id" property="id"/>
+        <result column="brand_id" property="brandId"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="category_id" property="catelogId"/>
+        <result column="category_name" property="catelogName"/>
+    </resultMap>
+
+
+    <select id="selectCategoryBrandRelationPage" resultMap="categoryBrandRelationResultMap">
+        select * from pms_category_brand_relation where is_deleted = 0
+    </select>
+
+    <update id="updateBrandNameByBrandId">
+        update pms_category_brand_relation set  brand_name  = #{name} where brand_id = #{brandId}
+    </update>
+    <update id="updateCategoryNameByCategoryId">
+        update pms_category_brand_relation set  catelog_name  = #{name} where catelog_id = #{catId}
+    </update>
+
+    <select id="getBrandIdsByCatelogId" resultType="java.lang.Long">
+        SELECT brand_id FROM pms_category_brand_relation where catelog_id = #{catId}
+    </select>
+</mapper>
